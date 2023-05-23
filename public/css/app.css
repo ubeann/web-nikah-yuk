@@ -295,16 +295,15 @@ section {
     font-size: 2rem;
 }
 
-.footer .credit span a {
-    color: white;
-    background-color: green;
+.footer .credit a {
+    color: var(--main-color);
     padding: 0px 5px;
+    border-radius: .5rem;
 }
 
-.footer .credit span a:hover {
-    color: white;
-    background-color: indigo;
-    padding: 0px 5px;
+.footer .credit a:hover {
+    color: #fff;
+    background: var(--main-color);
 }
 
 @keyframes spin {
