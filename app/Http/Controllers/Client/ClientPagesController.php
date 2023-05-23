@@ -4,26 +4,11 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Session;
 
 class ClientPagesController extends Controller {
     public function landing(Request $request) {
-        // Check if the route is landing
-        $routeName = $request->route()->getName();
-        $isLanding = $routeName == 'landing';
-
-        // Routes
-        $mainRoute = $isLanding ? '' : route('landing');
-        $routes = [
-            'Home' => $mainRoute . '#home',
-            'Service' => $mainRoute . '#service',
-            'About' => $mainRoute . '#about',
-            'Gallery' => $mainRoute . '#gallery',
-            'Price' => $mainRoute . '#price',
-            'Review' => $mainRoute . '#review',
-            'Contact' => $mainRoute . '#contact',
-        ];
-        $landingRoute = $isLanding ? '#' : route('landing');
-
         // Reviews data
         $reviews = [
             [
@@ -64,6 +49,18 @@ class ClientPagesController extends Controller {
         ];
 
         // Return view
-        return view('client.landing', compact('routes', 'landingRoute', 'reviews'));
+        return view('client.landing', compact('reviews'));
+    }
+
+    public function loginForm() {
+        // Return view
+        return view('client.login');
+    }
+
+    public function registerForm() {
+        // Return view
+        Session::flash('alert-type', 'danger');
+        Session::flash('alert-message', 'Registrasi belum dibuka!');
+        return redirect()->route('client.login');
     }
 }

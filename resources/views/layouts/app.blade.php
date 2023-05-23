@@ -42,15 +42,48 @@
 
     <!-- Header -->
     <header class="header">
+        <!-- PHP to check if the route is landing -->
+        @php
+            // Check if the route is landing
+            $routeName = Route::currentRouteName();
+            $isLanding = $routeName == 'landing';
+
+            // Routes
+            $mainRoute = $isLanding ? '' : route('landing');
+            $routes = [
+                'Home' => $mainRoute . '#home',
+                'Service' => $mainRoute . '#service',
+                'About' => $mainRoute . '#about',
+                'Gallery' => $mainRoute . '#gallery',
+                'Price' => $mainRoute . '#price',
+                'Review' => $mainRoute . '#review',
+                'Contact' => $mainRoute . '#contact',
+            ];
+            $landingRoute = $isLanding ? '#' : route('landing');
+        @endphp
 
         <!-- Logo -->
         <a href="{{ $landingRoute }}" class="logo"><span>Nikah</span>Yuk</a>
 
         <!-- Navbar -->
         <nav class="navbar">
+            <!-- Section -->
             @foreach ($routes as $name => $link)
                 <a href="{{ $link }}" >{{ $name }}</a>
             @endforeach
+
+            <!-- Buttons -->
+            <a href="{{ route('client.login') }}" class="login">Login</a>
+            <a href="{{ route('client.register') }}" class="register">Register</a>
+
+            <!-- Dropdown -->
+            {{-- <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Account</a>
+                <div class="dropdown-menu">
+                    <a href="{{ route('client.login') }}" class="dropdown-item">Login</a>
+                    <a href="{{ route('client.register') }}" class="dropdown-item">Register</a>
+                </div>
+            </div> --}}
         </nav>
 
         <!-- Menu -->

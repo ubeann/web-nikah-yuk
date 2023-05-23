@@ -16,4 +16,7 @@ use App\Http\Controllers\Client\ClientPagesController;
 |
 */
 
+// Client routes
 Route::get('/', [ClientPagesController::class, 'landing'])->name('landing');
+Route::get('/login', [ClientPagesController::class, 'loginForm'])->name('client.login');
+Route::get('/register', [ClientPagesController::class, 'registerForm'])->name('client.register');
