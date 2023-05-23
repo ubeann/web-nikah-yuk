@@ -29,7 +29,7 @@ main div {
 }
 
 .container .form-box h3 {
-    color: #fff;
+    color: var(--main-color);
     font-size: 4.5rem;
     text-transform: uppercase;
 }
