@@ -59,8 +59,6 @@ class ClientPagesController extends Controller {
 
     public function registerForm() {
         // Return view
-        Session::flash('alert-type', 'danger');
-        Session::flash('alert-message', 'Registrasi belum dibuka!');
-        return redirect()->route('client.login');
+        return view('client.register');
     }
 }
