@@ -64,6 +64,11 @@
                 </div>
 
                 <button type="submit" class="btn">Register</button>
+
+                <div class="link">
+                    <p>Sudah punya akun? <a href="{{ route('client.login.form') }}">Login</a></p>
+                </div>
+
             </form>
         </div>
 @endsection

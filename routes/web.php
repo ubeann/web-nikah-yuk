@@ -42,6 +42,14 @@ Route::group(['as' => 'client.'], function () {
     Route::get('/dummy', [AuthController::class, 'checkLogin'])->name('dummy');
 });
 
+// User routes
+Route::group(['as' => 'user.'], function () {
+});
+
+// Admin routes
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+});
+
 //! DEBUG
 Route::get('/list-user', [ExperimentalController::class, 'listUser'])->name('user.list');
 Route::get('/user/{id}/edit', [ExperimentalController::class, 'editUser'])->name('user.edit');

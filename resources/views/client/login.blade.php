@@ -45,6 +45,10 @@
                 </div>
 
                 <button type="submit" class="btn">Login</button>
+
+                <div class="link">
+                    <p>Belum punya akun? <a href="{{ route('client.register.form') }}">Register</a></p>
+                </div>
             </form>
         </div>
     </div>

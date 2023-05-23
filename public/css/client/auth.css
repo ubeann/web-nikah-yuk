@@ -109,6 +109,22 @@ main div {
     width: 100%;
 }
 
+.container .form-box .link {
+    color: #fff;
+    margin-top: 1rem;
+}
+
+.container .form-box .link a {
+    font-weight: 600;
+    color: var(--main-color);
+    text-decoration: none;
+    margin-left: .5rem;
+}
+
+.container .form-box .link a:hover {
+    text-decoration: underline;
+}
+
 /* media queries */
 /* remove photo when screen size is less than 768px */
 @media (max-width: 768px) {
