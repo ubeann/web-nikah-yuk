@@ -263,6 +263,10 @@
 }
 
 /* contact */
+.contact .heading {
+    padding-bottom: 0;
+}
+
 .contact form {
     max-width: 70rem;
     margin: 1rem auto;
