@@ -11,3 +11,9 @@ window.onscroll = () => {
     menu.classList.remove('fa-times');
     navbar.classList.remove('active');
 }
+
+// Alert
+let alertBox = document.querySelector('.alert');
+document.querySelector('#btn-alert-close').onclick = () => {
+    alertBox.classList.remove('active');
+}
