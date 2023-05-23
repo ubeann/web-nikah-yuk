@@ -15,5 +15,7 @@
     @empty
         <p>Tidak ada data</p>
     @endforelse
+    <hr>
+    <a href="{{ route('user.list') }}">List User</a>
 </body>
 </html>

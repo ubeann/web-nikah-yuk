@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Controller
 use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\ClientPagesController;
+use App\Http\Controllers\ExperimentalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,12 @@ Route::group(['as' => 'client.'], function () {
     // Logout
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
     //! DEBUG
     Route::get('/dummy', [AuthController::class, 'checkLogin'])->name('dummy');
 });
+
+//! DEBUG
+Route::get('/list-user', [ExperimentalController::class, 'listUser'])->name('user.list');
+Route::get('/user/{id}/edit', [ExperimentalController::class, 'editUser'])->name('user.edit');
+Route::put('/user/{id}/edit', [ExperimentalController::class, 'updateUser'])->name('user.update');
+Route::delete('/user/{id}/delete', [ExperimentalController::class, 'deleteUser'])->name('user.delete');
