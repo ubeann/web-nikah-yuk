@@ -49,7 +49,7 @@
             $isLanding = $routeName == 'landing';
 
             // Routes
-            $mainRoute = $isLanding ? '' : route('landing');
+            $mainRoute = $isLanding ? '' : route('client.landing');
             $routes = [
                 'Home' => $mainRoute . '#home',
                 'Service' => $mainRoute . '#service',
@@ -59,7 +59,7 @@
                 'Review' => $mainRoute . '#review',
                 'Contact' => $mainRoute . '#contact',
             ];
-            $landingRoute = $isLanding ? '#' : route('landing');
+            $landingRoute = $isLanding ? '#' : route('client.landing');
         @endphp
 
         <!-- Logo -->
@@ -73,8 +73,8 @@
             @endforeach
 
             <!-- Buttons -->
-            <a href="{{ route('client.login') }}" class="login">Login</a>
-            <a href="{{ route('client.register') }}" class="register">Register</a>
+            <a href="{{ route('client.login.form') }}" class="login">Login</a>
+            <a href="{{ route('client.register.form') }}" class="register">Register</a>
 
             <!-- Dropdown -->
             {{-- <div class="dropdown">

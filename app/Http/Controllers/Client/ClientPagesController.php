@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class ClientPagesController extends Controller {
     public function landing(Request $request) {
@@ -53,11 +52,23 @@ class ClientPagesController extends Controller {
     }
 
     public function loginForm() {
+        // TODO: Change route to dashboard if user already logged in
+        // Check Auth
+        if (Auth::check()) {
+            return redirect()->route('client.dummy');
+        }
+
         // Return view
         return view('client.login');
     }
 
     public function registerForm() {
+        // TODO: Change route to dashboard if user already logged in
+        // Check Auth
+        if (Auth::check()) {
+            return redirect()->route('client.dummy');
+        }
+
         // Return view
         return view('client.register');
     }

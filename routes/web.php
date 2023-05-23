@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Controller
+use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\ClientPagesController;
 
 /*
@@ -17,6 +18,26 @@ use App\Http\Controllers\Client\ClientPagesController;
 */
 
 // Client routes
-Route::get('/', [ClientPagesController::class, 'landing'])->name('landing');
-Route::get('/login', [ClientPagesController::class, 'loginForm'])->name('client.login');
-Route::get('/register', [ClientPagesController::class, 'registerForm'])->name('client.register');
+Route::group(['as' => 'client.'], function () {
+    // Landing
+    Route::get('/', [ClientPagesController::class, 'landing'])->name('landing');
+
+    // Login
+    Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
+        Route::get('/', [ClientPagesController::class, 'loginForm'])->name('form');
+        Route::post('/', [AuthController::class, 'login'])->name('submit');
+    });
+
+    // Register
+    Route::group(['prefix' => 'register', 'as' => 'register.'], function () {
+        Route::get('/', [ClientPagesController::class, 'registerForm'])->name('form');
+        Route::post('/', [AuthController::class, 'register'])->name('submit');
+    });
+
+    // Logout
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+    //! DEBUG
+    Route::get('/dummy', [AuthController::class, 'checkLogin'])->name('dummy');
+});
