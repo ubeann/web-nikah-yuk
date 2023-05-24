@@ -3,6 +3,7 @@
 
 * {
 	box-sizing: border-box;
+    transition: .2s linear;
 }
 
 body {
@@ -150,6 +151,84 @@ span {
 
 .container .form-box button:active {
 	transform: scale(0.95);
+}
+
+/* alert */
+.alert {
+    width: 100%;
+    padding: 1rem;
+    background: #333;
+    color: #fff;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    display: none;
+}
+
+.alert.active {
+    display: flex;
+}
+
+.alert .message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.alert span {
+    font-weight: 600;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+}
+
+.alert span:hover {
+    cursor: pointer;
+    background: #fff;
+}
+
+.alert-danger span,
+.alert-success span {
+    color: #fff;
+}
+
+.alert-danger {
+    background: #DC3545;
+}
+
+.alert-danger span:hover {
+    color: #DC3545;
+}
+
+.alert-success {
+    background: #198754;
+}
+
+.alert-success span:hover {
+    color: #198754;
+}
+.alert-warning {
+    background: #FFC107;
+    color: #000;
+}
+
+.alert-warning span {
+    color: #000;
+}
+
+.alert-warning span:hover {
+    color: #FFC107;
+    background-color: #000;
 }
 
 /* footer */

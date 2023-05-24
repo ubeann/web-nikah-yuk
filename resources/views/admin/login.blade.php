@@ -51,18 +51,18 @@
                 @if (session('alert'))
                     @include('components.alert', ['type' => session('alert')['type'], 'message' => session('alert')['message']])
                 @elseif ($errors->any())
-                    @include('components.alert', ['type' => 'danger', 'message' => 'Login gagal, silahkan cek kembali email dan password anda'])
+                    @include('components.alert', ['type' => 'danger', 'message' => 'Login gagal, silahkan cek kembali username dan password anda'])
                 @endif
 
                 @csrf
 
-                <!-- Email -->
+                <!-- Username -->
                 <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="example@mail.com" value="{{ old('email') }}">
-                    <small @if($errors->has('email')) class="active" @endif>
+                    <label for="username">Username</label>
+                    <input type="username" name="username" id="username" placeholder="ex: {{ fake()->username }}" value="{{ old('username') }}" autofocus>
+                    <small @if($errors->has('username')) class="active" @endif>
                         <i class="fas fa-exclamation-circle"></i>
-                        {{ $errors->first('email') }}
+                        {{ $errors->first('username') }}
                     </small>
                 </div>
 
