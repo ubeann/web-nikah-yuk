@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controller
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\PagesController as AdminPagesController;
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
 use App\Http\Controllers\Client\ClientPagesController;
 use App\Http\Controllers\ExperimentalController;
@@ -53,6 +54,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
         Route::get('/', [AdminAuthController::class, 'loginForm'])->name('form');
         Route::post('/', [AdminAuthController::class, 'login'])->name('submit');
+    });
+
+    // Authenticated routes
+    Route::group([], function () {
+        // Dashboard
+        Route::get('/', [AdminPagesController::class, 'dashboard'])->name('dashboard');
     });
 
     // Logout

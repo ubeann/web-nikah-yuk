@@ -7,11 +7,9 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller {
     public function loginForm() {
-        // TODO: Change route to dashboard if user already logged in
         // Check Auth
         if (auth()->guard('admin')->check()) {
-            return redirect()->route('client.dummy');
-            // return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard');
         }
 
         // Return view
@@ -19,6 +17,11 @@ class AuthController extends Controller {
     }
 
     public function login(Request $request) {
+        // Check Auth
+        if (auth()->guard('admin')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
+
         // Validate request
         $request->validate([
             'username' => 'required',
@@ -27,9 +30,7 @@ class AuthController extends Controller {
 
         // Attempt login
         if (auth()->guard('admin')->attempt($request->only('username', 'password'))) {
-            return redirect()->route('client.dummy');
-            // TODO: Change route to dashboard if user already logged in
-            // return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard');
         } else {
             return redirect()->back()->withErrors(['username' => 'Username or password is incorrect', 'password' => 'Username or password is incorrect']);
         }
