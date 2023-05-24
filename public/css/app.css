@@ -205,6 +205,12 @@ section {
     display: flex;
 }
 
+.alert .message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .alert span {
     font-weight: 600;
     padding-top: 0.5rem;
