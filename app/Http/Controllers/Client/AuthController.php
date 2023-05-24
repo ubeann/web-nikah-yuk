@@ -25,7 +25,7 @@ class AuthController extends Controller {
     public function login(Request $request) {
         // TODO: Change route to dashboard if user already logged in
         // Check Auth
-        if (Auth::check()) {
+        if (auth()->guard('user')->check()) {
             return redirect()->route('client.dummy');
         }
 
@@ -36,10 +36,7 @@ class AuthController extends Controller {
         ]);
 
         // Attempt login
-        Auth::attempt($request->only('email', 'password'), $request->filled('remember'));
-
-        // Check login
-        if (Auth::check()) {
+        if (auth()->guard('user')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
             // TODO: Change route to dashboard if user already logged in
             // Return view
             return redirect()->route('client.dummy');
@@ -51,7 +48,7 @@ class AuthController extends Controller {
     public function register(Request $request) {
         // TODO: Change route to dashboard if user already logged in
         // Check Auth
-        if (Auth::check()) {
+        if (auth()->guard('user')->check()) {
             return redirect()->route('client.dummy');
         }
 
@@ -107,7 +104,7 @@ class AuthController extends Controller {
 
     public function logout() {
         // Logout
-        auth()->logout();
+        auth()->guard('user')->logout();
 
         // Redirect to login page
         return redirect()->route('client.login.form');

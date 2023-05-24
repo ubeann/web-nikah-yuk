@@ -54,7 +54,7 @@ class ClientPagesController extends Controller {
     public function loginForm() {
         // TODO: Change route to dashboard if user already logged in
         // Check Auth
-        if (Auth::check()) {
+        if (auth()->guard('user')->check()) {
             return redirect()->route('client.dummy');
         }
 
@@ -65,7 +65,7 @@ class ClientPagesController extends Controller {
     public function registerForm() {
         // TODO: Change route to dashboard if user already logged in
         // Check Auth
-        if (Auth::check()) {
+        if (auth()->guard('user')->check()) {
             return redirect()->route('client.dummy');
         }
 
