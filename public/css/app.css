@@ -205,6 +205,12 @@ section {
     display: flex;
 }
 
+.alert .message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .alert span {
     font-weight: 600;
     padding-top: 0.5rem;
@@ -293,6 +299,12 @@ section {
     padding: 2rem;
     padding-top: 2.5rem;
     font-size: 2rem;
+}
+
+.footer .credit i {
+    color: var(--main-color);
+    font-size: 2rem;
+    padding: 0 .5rem;
 }
 
 .footer .credit a {

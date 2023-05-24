@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 // Controller
-use App\Http\Controllers\Client\AuthController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\PagesController as AdminPagesController;
+use App\Http\Controllers\Client\AuthController as ClientAuthController;
 use App\Http\Controllers\Client\ClientPagesController;
 use App\Http\Controllers\ExperimentalController;
 
@@ -26,20 +28,20 @@ Route::group(['as' => 'client.'], function () {
     // Login
     Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
         Route::get('/', [ClientPagesController::class, 'loginForm'])->name('form');
-        Route::post('/', [AuthController::class, 'login'])->name('submit');
+        Route::post('/', [ClientAuthController::class, 'login'])->name('submit');
     });
 
     // Register
     Route::group(['prefix' => 'register', 'as' => 'register.'], function () {
         Route::get('/', [ClientPagesController::class, 'registerForm'])->name('form');
-        Route::post('/', [AuthController::class, 'register'])->name('submit');
+        Route::post('/', [ClientAuthController::class, 'register'])->name('submit');
     });
 
     // Logout
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/logout', [ClientAuthController::class, 'logout'])->name('logout');
 
     //! DEBUG
-    Route::get('/dummy', [AuthController::class, 'checkLogin'])->name('dummy');
+    Route::get('/dummy', [ClientAuthController::class, 'checkLogin'])->name('dummy');
 });
 
 // User routes
@@ -48,6 +50,20 @@ Route::group(['as' => 'user.'], function () {
 
 // Admin routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    // Login
+    Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
+        Route::get('/', [AdminAuthController::class, 'loginForm'])->name('form');
+        Route::post('/', [AdminAuthController::class, 'login'])->name('submit');
+    });
+
+    // Authenticated routes
+    Route::group(['middleware' => 'admin'], function () {
+        // Dashboard
+        Route::get('/', [AdminPagesController::class, 'dashboard'])->name('dashboard');
+    });
+
+    // Logout
+    Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 
 //! DEBUG

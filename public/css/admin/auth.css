@@ -1,0 +1,274 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+    transition: .2s linear;
+}
+
+body {
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+	font-weight: bold;
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+span {
+	font-size: 12px;
+}
+
+.container {
+	background-color: #fff;
+	position: relative;
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container .thumbnail,
+.container .form-box {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.container .thumbnail {
+    width: 35%;
+    color: #fff;
+    background-color: #2e323a;
+    /* background-image: url('https://source.unsplash.com/random/900x600/?face');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+    flex-direction: column;
+}
+
+.container .form-box {
+    width: 65%;
+    padding: 2rem;
+}
+
+.container .form-box form {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.container .form-box h1 {
+    text-align: center;
+}
+
+.container .form-box .input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.container .form-box .input-group input {
+    width: 100%;
+    background: #333;
+    border: 3px solid transparent;
+    outline: none;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: .5rem;
+    width: 100%;
+}
+
+.container .form-box .input-group input:focus {
+    border-color: slateblue;
+}
+
+.container .form-box .input-group input::placeholder {
+    color: #ffffff64;
+}
+
+.container .form-box .input-group label {
+    color: #17191e;
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: block;
+}
+
+.container .form-box .input-group small {
+    color: #DC3545;
+    display: none;
+}
+
+.container .form-box .input-group small.active {
+    display: block;
+}
+
+.container .form-box .checkbox {
+    justify-content: unset;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.container .form-box button {
+    border: 1px solid #17191e;
+	border-radius: 24px;
+	background-color: #17191e;
+	color: #FFFFFF;
+	padding: 12px 45px;
+	font-size: 1rem;
+	font-weight: bold;
+    text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: transform 80ms ease-in;
+}
+
+.container .form-box button:active {
+	transform: scale(0.95);
+}
+
+/* alert */
+.alert {
+    width: 100%;
+    padding: 1rem;
+    background: #333;
+    color: #fff;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    display: none;
+}
+
+.alert.active {
+    display: flex;
+}
+
+.alert .message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.alert span {
+    font-weight: 600;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+}
+
+.alert span:hover {
+    cursor: pointer;
+    background: #fff;
+}
+
+.alert-danger span,
+.alert-success span {
+    color: #fff;
+}
+
+.alert-danger {
+    background: #DC3545;
+}
+
+.alert-danger span:hover {
+    color: #DC3545;
+}
+
+.alert-success {
+    background: #198754;
+}
+
+.alert-success span:hover {
+    color: #198754;
+}
+.alert-warning {
+    background: #FFC107;
+    color: #000;
+}
+
+.alert-warning span {
+    color: #000;
+}
+
+.alert-warning span:hover {
+    color: #FFC107;
+    background-color: #000;
+}
+
+/* footer */
+
+footer {
+    background-color: #17191e;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: red;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+/* media queries  */
+
+@media (max-width:991px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width:450px) {
+    html {
+        font-size: 50%;
+    }
+}
