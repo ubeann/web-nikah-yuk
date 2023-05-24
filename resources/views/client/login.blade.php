@@ -27,6 +27,7 @@
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="example@mail.com">
                     <small @if($errors->has('email')) class="active" @endif>
+                        <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('email') }}
                     </small>
                 </div>
@@ -35,6 +36,7 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" placeholder="min. 8 characters">
                     <small @if($errors->has('password')) class="active" @endif>
+                        <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('password') }}
                     </small>
                 </div>

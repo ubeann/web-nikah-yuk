@@ -295,6 +295,12 @@ section {
     font-size: 2rem;
 }
 
+.footer .credit i {
+    color: var(--main-color);
+    font-size: 2rem;
+    padding: 0 .5rem;
+}
+
 .footer .credit a {
     color: var(--main-color);
     padding: 0px 5px;

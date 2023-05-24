@@ -91,10 +91,12 @@
 
     </header>
 
+    <!-- Main Content -->
     <main>
         @yield('content')
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="credit">
             &copy; {{ date('Y') }} Nikah Yuk Website | All rights reserved | Made with <i class="fas fa-heart"></i> by <a href="#">Nikah Yuk Team</a>

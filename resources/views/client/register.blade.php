@@ -27,6 +27,7 @@
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" placeholder="John Doe" value="{{ old('name') }}">
                     <small @if($errors->has('name')) class="active" @endif>
+                        <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('name') }}
                     </small>
                 </div>
@@ -35,6 +36,7 @@
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="example@mail.com" value="{{ old('email') }}">
                     <small @if($errors->has('email')) class="active" @endif>
+                        <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('email') }}
                     </small>
                 </div>
@@ -43,6 +45,7 @@
                     <label for="phone">Phone Number</label>
                     <input type="text" name="phone" id="phone" placeholder="08xxxxxxxxxx" value="{{ old('phone') }}">
                     <small @if($errors->has('phone')) class="active" @endif>
+                        <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('phone') }}
                     </small>
                 </div>
@@ -51,6 +54,7 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" placeholder="min. 8 characters">
                     <small @if($errors->has('password')) class="active" @endif>
+                        <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('password') }}
                     </small>
                 </div>
@@ -59,6 +63,7 @@
                     <label for="password_confirmation">Confirm Password</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" placeholder="type your password again">
                     <small @if($errors->has('password_confirmation')) class="active" @endif>
+                        <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('password_confirmation') }}
                     </small>
                 </div>
