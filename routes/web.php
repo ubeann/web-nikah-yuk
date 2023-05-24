@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     // Authenticated routes
-    Route::group([], function () {
+    Route::group(['middleware' => 'admin'], function () {
         // Dashboard
         Route::get('/', [AdminPagesController::class, 'dashboard'])->name('dashboard');
     });
