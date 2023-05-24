@@ -60,6 +60,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['middleware' => 'admin'], function () {
         // Dashboard
         Route::get('/', [AdminPagesController::class, 'dashboard'])->name('dashboard');
+
+        // Settings
+        Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+            Route::get('/', [AdminPagesController::class, 'settings'])->name('form');
+            Route::put('/', [AdminAuthController::class, 'updateUsername'])->name('update.username');
+            Route::patch('/', [AdminAuthController::class, 'updatePassword'])->name('update.password');
+        });
     });
 
     // Logout

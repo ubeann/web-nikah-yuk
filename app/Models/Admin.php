@@ -36,4 +36,9 @@ class Admin extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    // save username as lowercase
+    public function setUsernameAttribute($value) {
+        $this->attributes['username'] = strtolower($value);
+    }
 }

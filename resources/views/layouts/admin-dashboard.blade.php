@@ -71,7 +71,7 @@
                         </a>
                         <div class="navbar-dropdown">
                             {{-- TODO: Setting --}}
-                            <a class="navbar-item">
+                            <a class="navbar-item" href="{{ route('admin.settings.form') }}">
                                 <span class="icon"><i class="mdi mdi-settings"></i></span>
                                 <span>Settings</span>
                             </a>
@@ -106,7 +106,8 @@
                 <p class="menu-label">General</p>
                 <ul class="menu-list">
                     <li>
-                        <a class="is-active router-link-active has-icon" href="{{ route('admin.dashboard') }}">
+                        <a class="router-link-active has-icon {{ request()->is('admin') ? 'is-active' : '' }}"
+                            href="{{ route('admin.dashboard') }}">
                             <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
                             <span class="menu-item-label">Dashboard</span>
                         </a>
@@ -123,6 +124,28 @@
                                 <i class="mdi mdi-account-multiple"></i>
                             </span>
                             <span class="menu-item-label">Clients</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Security -->
+                <p class="menu-label">Security</p>
+                <ul class="menu-list">
+                    <li>
+                        <a class="has-icon {{ request()->is('admin/settings') ? 'is-active' : '' }}"
+                            href="{{ route('admin.settings.form') }}">
+                            <span class="icon">
+                                <i class="mdi mdi-settings"></i>
+                            </span>
+                            <span class="menu-item-label">Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-icon" href="{{ route('admin.logout') }}">
+                            <span class="icon">
+                                <i class="mdi mdi-logout"></i>
+                            </span>
+                            <span class="menu-item-label">Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -163,6 +186,30 @@
 
         <!-- Main -->
         <section class="section is-main-section">
+            <!-- Success -->
+            @if (session('success'))
+            <div class="notification is-success">
+                <button class="delete jb-notification-dismiss"></button>
+                {{ session('success') }}
+            </div>
+            @endif
+
+            <!-- Error -->
+            @if (session('error'))
+                <div class="notification is-danger">
+                    <button class="delete jb-notification-dismiss"></button>
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            <!-- Warning -->
+            @if (session('warning'))
+                <div class="notification is-warning">
+                    <button class="delete jb-notification-dismiss"></button>
+                    {{ session('warning') }}
+                </div>
+            @endif
+
             @yield('content')
         </section>
 
