@@ -70,7 +70,6 @@
                             <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
                         </a>
                         <div class="navbar-dropdown">
-                            {{-- TODO: Setting --}}
                             <a class="navbar-item" href="{{ route('admin.settings.form') }}">
                                 <span class="icon"><i class="mdi mdi-settings"></i></span>
                                 <span>Settings</span>
@@ -115,11 +114,10 @@
                 </ul>
 
                 <!-- Menu -->
-                {{-- TODO: Setting Menu --}}
                 <p class="menu-label">Menu</p>
                 <ul class="menu-list">
                     <li>
-                        <a class="has-icon {{ request()->is('admin/client') ? 'is-active' : '' }}"
+                        <a class="has-icon {{ str_starts_with(request()->url(), route('admin.client.index')) ? 'is-active' : '' }}"
                             href="{{ route('admin.client.index') }}">
                             <span class="icon">
                                 <i class="mdi mdi-account-multiple"></i>
