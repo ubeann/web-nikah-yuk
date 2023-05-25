@@ -267,6 +267,13 @@ footer a {
     }
 }
 
+/* phone */
+@media (max-width:768px) {
+    .container .thumbnail {
+        display: none;
+    }
+}
+
 @media (max-width:450px) {
     html {
         font-size: 50%;
