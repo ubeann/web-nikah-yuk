@@ -24,12 +24,17 @@ class UserFactory extends Factory
         // Create email
         $email = Str::lower($firstName) . '.' . Str::lower($lastName) . '@example' . fake()->randomElement(['.com', '.org', '.net']);
 
+        // Fake date
+        $date = fake()->dateTimeBetween('-3 year', 'now');
+
         // Return definition
         return [
             'name' => $firstName . ' ' . $lastName,
             'email' => $email,
             'phone' => fake()->unique()->phoneNumber(),
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 
