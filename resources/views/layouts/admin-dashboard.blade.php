@@ -119,11 +119,12 @@
                 <p class="menu-label">Menu</p>
                 <ul class="menu-list">
                     <li>
-                        <a class="has-icon">
+                        <a class="has-icon {{ request()->is('admin/client') ? 'is-active' : '' }}"
+                            href="{{ route('admin.client.index') }}">
                             <span class="icon">
                                 <i class="mdi mdi-account-multiple"></i>
                             </span>
-                            <span class="menu-item-label">Clients</span>
+                            <span class="menu-item-label">Client</span>
                         </a>
                     </li>
                 </ul>

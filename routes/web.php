@@ -2,11 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Controller
+// Admin Controller
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\PagesController as AdminPagesController;
+
+// Client Controller
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
-use App\Http\Controllers\Client\ClientPagesController;
+use App\Http\Controllers\Client\PagesController as ClientPagesController;
+
+//! Experimental Controller
 use App\Http\Controllers\ExperimentalController;
 
 /*
@@ -60,6 +65,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['middleware' => 'admin'], function () {
         // Dashboard
         Route::get('/', [AdminPagesController::class, 'dashboard'])->name('dashboard');
+
+        // Clients
+        Route::group(['prefix' => 'client', 'as' => 'client.'], function () {
+            Route::get('/', [AdminClientController::class, 'index'])->name('index');
+            Route::delete('/{id}/delete', [AdminClientController::class, 'delete'])->name('delete');
+        });
 
         // Settings
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
