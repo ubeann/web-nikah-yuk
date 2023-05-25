@@ -168,10 +168,26 @@
                                     <div class="buttons has-addons">
                                         @if ($clients->lastPage() > 1)
                                             @for ($i = 1; $i <= $clients->lastPage(); $i++)
-                                                <a href="{{ $clients->url($i) }}"
-                                                    class="button {{ $clients->currentPage() == $i ? 'is-active' : '' }}">
-                                                    {{ $i }}
-                                                </a>
+                                                {{-- Set page --}}
+                                                @php
+                                                    $pageShown = 2;
+                                                @endphp
+
+                                                {{-- show 10 page, if more add ... --}}
+                                                @if ($i == 1 || $i == $clients->lastPage() || ($i >= $clients->currentPage() - $pageShown && $i <= $clients->currentPage() + $pageShown))
+                                                    <a href="{{ $clients->url($i) }}"
+                                                        class="button {{ $clients->currentPage() == $i ? 'is-active' : '' }}">
+                                                        {{ $i }}
+                                                    </a>
+                                                @endif
+
+                                                {{-- separator --}}
+                                                @if ($i == 2 && $clients->currentPage() - $pageShown > 2)
+                                                    <span class="button">...</span>
+                                                @endif
+                                                @if ($i == $clients->currentPage() + $pageShown && $clients->currentPage() + $pageShown < $clients->lastPage())
+                                                    <span class="button">...</span>
+                                                @endif
                                             @endfor
                                         @endif
                                     </div>
