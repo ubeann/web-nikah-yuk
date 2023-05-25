@@ -1,38 +1,75 @@
 @extends('layouts.admin-dashboard')
 
-@section('title', 'Settings')
+@section('title', 'Edit ' . $client->name)
 
 @section('navigation')
-<li>Settings</li>
+    <li>Client</li>
+    <li>Edit {{ $client->name }}</li>
 @endsection
 
 @section('content')
-    <!-- Change Username -->
+    <!-- Edit Profile -->
     <div class="card">
         <header class="card-header">
             <p class="card-header-title">
                 <span class="icon"><i class="mdi mdi-account default"></i></span>
-                Change Username
+                Edit Profile
             </p>
         </header>
         <div class="card-content">
-            <form action="{{ route('admin.settings.update.username') }}" method="POST">
+            <form action="{{ route('admin.client.update.profile', $client->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Username</label>
+                        <label class="label">Name</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input type="text" name="username" value="{{ old('username') ?? auth('admin')->user()->username }}"
-                                    class="input {{ $errors->has('username') ? 'is-danger' : '' }}">
+                                <input type="text" name="name" value="{{ old('name') ?? $client->name }}"
+                                    class="input {{ $errors->has('name') ? 'is-danger' : '' }}">
                             </div>
-                            @if($errors->has('username'))
-                                <p class="help is-danger">{{ $errors->first('username') }}</p>
+                            @if($errors->has('name'))
+                                <p class="help is-danger">{{ $errors->first('name') }}</p>
                             @else
-                                <p class="help">Required. Your username</p>
+                                <p class="help">Required. Client name</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Email</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input type="email" name="email" value="{{ old('email') ?? $client->email }}"
+                                    class="input {{ $errors->has('email') ? 'is-danger' : '' }}">
+                            </div>
+                            @if($errors->has('email'))
+                                <p class="help is-danger">{{ $errors->first('email') }}</p>
+                            @else
+                                <p class="help">Required. Client email</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Phone Numer</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input type="text" name="phone" value="{{ old('phone') ?? $client->phone }}"
+                                    class="input {{ $errors->has('phone') ? 'is-danger' : '' }}">
+                            </div>
+                            @if($errors->has('phone'))
+                                <p class="help is-danger">{{ $errors->first('phone') }}</p>
+                            @else
+                                <p class="help">Required. Client phone number</p>
                             @endif
                         </div>
                     </div>
@@ -43,7 +80,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <button type="button" class="button is-primary jb-modal" data-target="change-username-modal">
+                                <button type="button" class="button is-primary jb-modal" data-target="change-profile-modal">
                                     Save
                                 </button>
                             </div>
@@ -51,20 +88,20 @@
                     </div>
                 </div>
 
-                <!-- Change Username Modal -->
-                <div id="change-username-modal" class="modal jb-modal">
+                <!-- Change Profile Modal -->
+                <div id="change-profile-modal" class="modal jb-modal">
                     <div class="modal-background jb-modal-close"></div>
                     <div class="modal-card">
                         <header class="modal-card-head">
-                            <p class="modal-card-title">Confirm Change Username</p>
+                            <p class="modal-card-title">Confirm Changes to Profile</p>
                             <button class="delete jb-modal-close" aria-label="close"></button>
                         </header>
                         <section class="modal-card-body">
-                            <p>Are you sure you want to change your username?</p>
+                            <p>Are you sure you want to save changes to this profile?</p>
                         </section>
                         <footer class="modal-card-foot">
                             <button class="button jb-modal-close">Cancel</button>
-                            <button type="submit" class="button is-primary">Change Username</button>
+                            <button type="submit" class="button is-primary">Save</button>
                         </footer>
                     </div>
                     <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
@@ -82,28 +119,9 @@
             </p>
         </header>
         <div class="card-content">
-            <form action="{{ route('admin.settings.update.password') }}" method="POST">
+            <form action="{{ route('admin.client.update.password', $client->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Current password</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input type="password" name="password_current" autocomplete="current-password"
-                                    class="input {{ $errors->has('password_current') ? 'is-danger' : '' }}">
-                            </div>
-                            @if($errors->has('password_current'))
-                                <p class="help is-danger">{{ $errors->first('password_current') }}</p>
-                            @else
-                                <p class="help">Required. Your current password</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <hr>
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">New password</label>
@@ -147,7 +165,7 @@
                         <div class="field">
                             <div class="control">
                                 <button type="button" class="button is-primary jb-modal" data-target="change-password-modal">
-                                    Submit
+                                    Change Password
                                 </button>
                             </div>
                         </div>
@@ -163,7 +181,7 @@
                             <button class="delete jb-modal-close" aria-label="close"></button>
                         </header>
                         <section class="modal-card-body">
-                            <p>Are you sure you want to change your password?</p>
+                            <p>Are you sure you want to change this client's password?</p>
                         </section>
                         <footer class="modal-card-foot">
                             <button class="button jb-modal-close">Cancel</button>

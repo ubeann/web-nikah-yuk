@@ -70,7 +70,6 @@
                             <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
                         </a>
                         <div class="navbar-dropdown">
-                            {{-- TODO: Setting --}}
                             <a class="navbar-item" href="{{ route('admin.settings.form') }}">
                                 <span class="icon"><i class="mdi mdi-settings"></i></span>
                                 <span>Settings</span>
@@ -115,15 +114,15 @@
                 </ul>
 
                 <!-- Menu -->
-                {{-- TODO: Setting Menu --}}
                 <p class="menu-label">Menu</p>
                 <ul class="menu-list">
                     <li>
-                        <a class="has-icon">
+                        <a class="has-icon {{ str_starts_with(request()->url(), route('admin.client.index')) ? 'is-active' : '' }}"
+                            href="{{ route('admin.client.index') }}">
                             <span class="icon">
                                 <i class="mdi mdi-account-multiple"></i>
                             </span>
-                            <span class="menu-item-label">Clients</span>
+                            <span class="menu-item-label">Client</span>
                         </a>
                     </li>
                 </ul>
@@ -199,6 +198,19 @@
                 <div class="notification is-danger">
                     <button class="delete jb-notification-dismiss"></button>
                     {{ session('error') }}
+                </div>
+            @elseif ($errors->any())
+                <div class="notification is-danger">
+                    <button class="delete jb-notification-dismiss"></button>
+                    <ul class="is-marginless">
+                        There are problems with your input:
+                        @foreach ($errors->all() as $error)
+                            <li>
+                                <i class="mdi mdi-alert-circle"></i>
+                                {{ $error }}
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
 
