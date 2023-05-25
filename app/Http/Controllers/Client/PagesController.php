@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ClientPagesController extends Controller {
+class PagesController extends Controller {
     public function landing(Request $request) {
         // Reviews data
         $reviews = [
