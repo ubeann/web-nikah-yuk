@@ -199,6 +199,19 @@
                     <button class="delete jb-notification-dismiss"></button>
                     {{ session('error') }}
                 </div>
+            @elseif ($errors->any())
+                <div class="notification is-danger">
+                    <button class="delete jb-notification-dismiss"></button>
+                    <ul class="is-marginless">
+                        There are problems with your input:
+                        @foreach ($errors->all() as $error)
+                            <li>
+                                <i class="mdi mdi-alert-circle"></i>
+                                {{ $error }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
 
             <!-- Warning -->
