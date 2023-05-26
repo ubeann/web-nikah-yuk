@@ -52,10 +52,9 @@ class PagesController extends Controller {
     }
 
     public function loginForm() {
-        // TODO: Change route to dashboard if user already logged in
         // Check Auth
         if (auth()->guard('user')->check()) {
-            return redirect()->route('client.dummy');
+            return redirect()->route('client.landing');
         }
 
         // Return view
@@ -63,10 +62,9 @@ class PagesController extends Controller {
     }
 
     public function registerForm() {
-        // TODO: Change route to dashboard if user already logged in
         // Check Auth
         if (auth()->guard('user')->check()) {
-            return redirect()->route('client.dummy');
+            return redirect()->route('client.landing');
         }
 
         // Return view

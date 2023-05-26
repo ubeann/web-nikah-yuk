@@ -44,9 +44,6 @@ Route::group(['as' => 'client.'], function () {
 
     // Logout
     Route::get('/logout', [ClientAuthController::class, 'logout'])->name('logout');
-
-    //! DEBUG
-    Route::get('/dummy', [ClientAuthController::class, 'checkLogin'])->name('dummy');
 });
 
 // User routes
@@ -86,9 +83,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     // Logout
     Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
-
-//! DEBUG
-Route::get('/list-user', [ExperimentalController::class, 'listUser'])->name('user.list');
-Route::get('/user/{id}/edit', [ExperimentalController::class, 'editUser'])->name('user.edit');
-Route::put('/user/{id}/edit', [ExperimentalController::class, 'updateUser'])->name('user.update');
-Route::delete('/user/{id}/delete', [ExperimentalController::class, 'deleteUser'])->name('user.delete');
