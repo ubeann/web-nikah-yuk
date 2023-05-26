@@ -24,6 +24,7 @@ class AdminMiddleware {
         ]);
 
         // Redirect to login page
-        return redirect()->route('admin.login.form');
+        // return redirect()->route('admin.login.form');
+        return redirect()->route('client.login.form');  // Merge login portal
     }
 }
