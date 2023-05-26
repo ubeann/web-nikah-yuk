@@ -107,6 +107,10 @@
                 <p class="menu-label">General</p>
                 <ul class="menu-list">
                     <li>
+                        <a class="has-icon" target="_blank" href="{{ route('client.landing') }}">
+                            <span class="icon"><i class="mdi mdi-home"></i></span>
+                            <span class="menu-item-label">Nikah Yuk Website</span>
+                        </a>
                         <a class="router-link-active has-icon {{ request()->is('admin') ? 'is-active' : '' }}"
                             href="{{ route('admin.dashboard') }}">
                             <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
