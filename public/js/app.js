@@ -12,6 +12,13 @@ window.onscroll = () => {
     navbar.classList.remove('active');
 }
 
+// Dropdown user
+let dropdown = document.querySelector('.dropdown');
+let dropdownMenu = document.querySelector('.dropdown-menu');
+dropdown.onclick = () => {
+    dropdownMenu.classList.toggle('active');
+}
+
 // Alert
 let alertBox = document.querySelector('.alert');
 document.querySelector('#btn-alert-close').onclick = () => {
