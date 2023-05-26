@@ -70,14 +70,16 @@
                 <div class="profile-image">
                     <img src="https://avatars.dicebear.com/v2/initials/{{ $user->name }}.svg" alt="{{ $user->name }}">
                 </div>
-                <h3>{{ ucwords($user->name) }}</h3>
-                <div class="profile-data">
-                    <i class="fas fa-envelope"></i>
-                    <p>{{ $user->email }}</p>
-                </div>
-                <div class="profile-data">
-                    <i class="fas fa-phone"></i>
-                    <p class="phone">{{ $user->phone }}</p>
+                <div class="profile-information">
+                    <h3>{{ ucwords($user->name) }}</h3>
+                    <div class="profile-data">
+                        <i class="fas fa-envelope"></i>
+                        <p>{{ $user->email }}</p>
+                    </div>
+                    <div class="profile-data">
+                        <i class="fas fa-phone"></i>
+                        <p class="phone">{{ $user->phone }}</p>
+                    </div>
                 </div>
             </div>
         </div>

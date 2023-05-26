@@ -25,16 +25,20 @@
     margin-top: 2rem;
 }
 
+.profile-card,
+.profile-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .profile-card {
     width: 30%;
     padding: 4rem;
     background: #333;
     border-radius: 1rem;
     border: 1px solid var(--main-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .profile-card .profile-image {
@@ -56,7 +60,7 @@
     text-transform: uppercase;
 }
 
-.profile-card .profile-data {
+.profile-card .profile-information .profile-data {
     width: 100%;
     display: flex;
     gap: 1rem;
@@ -64,8 +68,8 @@
     justify-content: center;
 }
 
-.profile-card .profile-data p,
-.profile-card .profile-data i {
+.profile-card .profile-information .profile-data p,
+.profile-card .profile-information .profile-data i {
     color: #fff;
     font-size: 1.5rem;
     line-height: 1.8;
@@ -73,4 +77,38 @@
 
 .form-password {
     margin-top: 2rem;
+}
+
+/* media queries */
+@media (max-width: 1024px) {
+    .profile {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column-reverse;
+    }
+
+    .profile-card {
+        width: 80%;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .profile-card .profile-image {
+        width: 50%;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 490px) {
+    .profile-card {
+        width: 100%;
+    }
+
+    .profile-card .profile-image {
+        width: 50%;
+    }
 }
