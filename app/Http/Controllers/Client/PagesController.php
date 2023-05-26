@@ -70,4 +70,12 @@ class PagesController extends Controller {
         // Return view
         return view('client.register');
     }
+
+    public function profile() {
+        // Get user
+        $user = auth()->guard('user')->user();
+
+        // Return view
+        return view('client.profile', compact('user'));
+    }
 }
