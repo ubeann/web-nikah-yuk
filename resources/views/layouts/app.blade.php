@@ -73,23 +73,40 @@
             @endforeach
 
             <!-- Buttons -->
-            @guest('user')
+            @if(!auth()->guard('user')->check() && !auth()->guard('admin')->check())
                 <a href="{{ route('client.login.form') }}" class="login">Login</a>
                 <a href="{{ route('client.register.form') }}" class="register">Register</a>
-            @endguest
+            @endif
 
-            <!-- Dropdown -->
+            <!-- Dropdown User -->
             @auth('user')
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle">
                         <span>
                             {{-- {{ ucwords(auth('user')->user()->name) }} --}}
-                            More
+                            Member
                         </span>
                         <i class="fas fa-chevron-down"></i>
                     </a>
                     <div class="dropdown-menu">
                         <a href="{{ route('client.profile.form') }}" class="dropdown-item">Profile</a>
+                        <a href="{{ route('client.logout') }}" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+            @endauth
+
+            <!-- Dropdown Admin -->
+            @auth('admin')
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        <span>
+                            {{-- {{ ucwords(auth('user')->user()->name) }} --}}
+                            Admin
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="{{ route('admin.dashboard') }}" class="dropdown-item">Dashboard</a>
                         <a href="{{ route('client.logout') }}" class="dropdown-item">Logout</a>
                     </div>
                 </div>

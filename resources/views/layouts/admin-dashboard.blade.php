@@ -74,7 +74,8 @@
                                 <span class="icon"><i class="mdi mdi-settings"></i></span>
                                 <span>Settings</span>
                             </a>
-                            <a class="navbar-item" href="{{ route('admin.logout') }}">
+                            {{-- <a class="navbar-item" href="{{ route('admin.logout') }}"> --}}
+                            <a class="navbar-item" href="{{ route('client.logout') }}">
                                 <span class="icon"><i class="mdi mdi-logout"></i></span>
                                 <span>Log Out</span>
                             </a>
@@ -89,7 +90,8 @@
             <!-- Head -->
             <div class="aside-tools">
                 <div class="aside-tools-label">
-                    @if( !request()->is('admin') && redirect()->back()->getTargetUrl() != route('admin.login.form'))
+                    {{-- @if( !request()->is('admin') && redirect()->back()->getTargetUrl() != route('admin.login.form')) --}}
+                    @if( !request()->is('admin') && redirect()->back()->getTargetUrl() != route('client.login.form'))
                     <a class="iconn" style="color: white;" href="{{ redirect()->back()->getTargetUrl() }}">
                         <i class="mdi mdi-arrow-left"></i>
                     </a>
@@ -140,7 +142,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="has-icon" href="{{ route('admin.logout') }}">
+                        {{-- <a class="has-icon" href="{{ route('admin.logout') }}"> --}}
+                        <a class="has-icon" href="{{ route('client.logout') }}">
                             <span class="icon">
                                 <i class="mdi mdi-logout"></i>
                             </span>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +13,30 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller {
     public function login(Request $request) {
         // Check Auth
-        if (auth()->guard('user')->check()) {
+        // if (auth()->guard('user')->check()) {
+        if (auth()->guard('user')->check() || auth()->guard('admin')->check()) {
             return redirect()->route('client.landing');
         }
+
+        //--------------------------------------------------------------------------------------------------------------
+        // Check email is username on admin
+        $admin = Admin::where('username', $request->input('email'))->first();
+        if ($admin) {
+            // Set data
+            $data = [
+                'username' => $request->input('email'),
+                'password' => $request->input('password'),
+            ];
+
+            // Attempt login
+            if (auth()->guard('admin')->attempt($data)) {
+                // Return view
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->back()->withErrors(['email' => 'Email or password is incorrect', 'password' => 'Email or password is incorrect']);
+            }
+        }
+        //--------------------------------------------------------------------------------------------------------------
 
         // Validate request
         $request->validate([
@@ -33,7 +55,8 @@ class AuthController extends Controller {
 
     public function register(Request $request) {
         // Check Auth
-        if (auth()->guard('user')->check()) {
+        // if (auth()->guard('user')->check()) {
+        if (auth()->guard('user')->check() || auth()->guard('admin')->check()) {
             return redirect()->route('client.landing');
         }
 
@@ -167,6 +190,7 @@ class AuthController extends Controller {
     public function logout() {
         // Logout
         auth()->guard('user')->logout();
+        auth()->guard('admin')->logout();
 
         // Redirect to login page
         return redirect()->route('client.login.form');
