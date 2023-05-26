@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class AdminMiddleware {
+class ClientMiddleware {
     /**
      * Handle an incoming request.
      */
