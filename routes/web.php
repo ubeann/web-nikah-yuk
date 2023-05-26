@@ -63,10 +63,10 @@ Route::group(['as' => 'user.'], function () {
 // Admin routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     // Login
-    Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
-        Route::get('/', [AdminAuthController::class, 'loginForm'])->name('form');
-        Route::post('/', [AdminAuthController::class, 'login'])->name('submit');
-    });
+    // Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
+    //     Route::get('/', [AdminAuthController::class, 'loginForm'])->name('form');
+    //     Route::post('/', [AdminAuthController::class, 'login'])->name('submit');
+    // });
 
     // Authenticated routes
     Route::group(['middleware' => 'admin'], function () {
@@ -91,5 +91,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     // Logout
-    Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    // Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

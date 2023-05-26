@@ -26,7 +26,7 @@
 
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="example@mail.com">
+                    <input type="text" name="email" id="email" placeholder="example@mail.com">
                     <small @if($errors->has('email')) class="active" @endif>
                         <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('email') }}
