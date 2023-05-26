@@ -42,6 +42,16 @@ Route::group(['as' => 'client.'], function () {
         Route::post('/', [ClientAuthController::class, 'register'])->name('submit');
     });
 
+    // Authenticated routes
+    Route::group(['middleware' => 'client'], function () {
+        // Profile
+        Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+            Route::get('/', [ClientPagesController::class, 'profile'])->name('form');
+            Route::put('/edit', [ClientAuthController::class, 'updateProfile'])->name('update.profile');
+            Route::patch('/edit', [ClientAuthController::class, 'updatePassword'])->name('update.password');
+        });
+    });
+
     // Logout
     Route::get('/logout', [ClientAuthController::class, 'logout'])->name('logout');
 });
