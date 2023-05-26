@@ -89,7 +89,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="{{ route('client.profile.form') }}" class="dropdown-item">Profile</a>
                         <a href="{{ route('client.logout') }}" class="dropdown-item">Logout</a>
                     </div>
                 </div>

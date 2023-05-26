@@ -3,6 +3,7 @@
 @section('title', 'Register')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/full-screen.css') }}">
     <link rel="stylesheet" href="{{ asset('css/client/auth.css') }}">
 @endsection
 
