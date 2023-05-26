@@ -94,17 +94,17 @@
                     <div class="modal-card">
                         <header class="modal-card-head">
                             <p class="modal-card-title">Confirm Changes to Profile</p>
-                            <button class="delete jb-modal-close" aria-label="close"></button>
+                            <button type="button" class="delete jb-modal-close" aria-label="close"></button>
                         </header>
                         <section class="modal-card-body">
                             <p>Are you sure you want to save changes to this profile?</p>
                         </section>
                         <footer class="modal-card-foot">
-                            <button class="button jb-modal-close">Cancel</button>
+                            <button type="button" class="button jb-modal-close">Cancel</button>
                             <button type="submit" class="button is-primary">Save</button>
                         </footer>
                     </div>
-                    <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
+                    <button type="button" class="modal-close is-large jb-modal-close" aria-label="close"></button>
                 </div>
             </form>
         </div>
@@ -178,17 +178,17 @@
                     <div class="modal-card">
                         <header class="modal-card-head">
                             <p class="modal-card-title">Confirm Change Password</p>
-                            <button class="delete jb-modal-close" aria-label="close"></button>
+                            <button type="button" class="delete jb-modal-close" aria-label="close"></button>
                         </header>
                         <section class="modal-card-body">
                             <p>Are you sure you want to change this client's password?</p>
                         </section>
                         <footer class="modal-card-foot">
-                            <button class="button jb-modal-close">Cancel</button>
+                            <button type="button" class="button jb-modal-close">Cancel</button>
                             <button type="submit" class="button is-primary">Change Password</button>
                         </footer>
                     </div>
-                    <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
+                    <button type="button" class="modal-close is-large jb-modal-close" aria-label="close"></button>
                 </div>
             </form>
         </div>

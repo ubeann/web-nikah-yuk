@@ -272,6 +272,12 @@ footer a {
     .container .thumbnail {
         display: none;
     }
+
+    .container .form-box,
+    .container .form-box form {
+        width: 100%;
+        max-width: 440px;
+    }
 }
 
 @media (max-width:450px) {

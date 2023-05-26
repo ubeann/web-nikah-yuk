@@ -10,23 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller {
-    public function checkLogin() {
-        // Create data
-        $data = [
-            'name' => Auth::check() ? Auth::user()->name : 'Guest',
-            'email' => Auth::check() ? Auth::user()->email : 'null',
-            'isLogin' => Auth::check() ? 'true' : 'false',
-        ];
-
-        // Return view
-        return view('dummy', compact('data'));
-    }
-
     public function login(Request $request) {
-        // TODO: Change route to dashboard if user already logged in
         // Check Auth
         if (auth()->guard('user')->check()) {
-            return redirect()->route('client.dummy');
+            return redirect()->route('client.landing');
         }
 
         // Validate request
@@ -37,19 +24,17 @@ class AuthController extends Controller {
 
         // Attempt login
         if (auth()->guard('user')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            // TODO: Change route to dashboard if user already logged in
             // Return view
-            return redirect()->route('client.dummy');
+            return redirect()->route('client.landing');
         } else {
             return redirect()->back()->withErrors(['email' => 'Email or password is incorrect', 'password' => 'Email or password is incorrect']);
         }
     }
 
     public function register(Request $request) {
-        // TODO: Change route to dashboard if user already logged in
         // Check Auth
         if (auth()->guard('user')->check()) {
-            return redirect()->route('client.dummy');
+            return redirect()->route('client.landing');
         }
 
         // Check phone number

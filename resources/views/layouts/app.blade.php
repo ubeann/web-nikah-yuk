@@ -73,17 +73,27 @@
             @endforeach
 
             <!-- Buttons -->
-            <a href="{{ route('client.login.form') }}" class="login">Login</a>
-            <a href="{{ route('client.register.form') }}" class="register">Register</a>
+            @guest('user')
+                <a href="{{ route('client.login.form') }}" class="login">Login</a>
+                <a href="{{ route('client.register.form') }}" class="register">Register</a>
+            @endguest
 
             <!-- Dropdown -->
-            {{-- <div class="dropdown">
-                <a href="#" class="dropdown-toggle">Account</a>
-                <div class="dropdown-menu">
-                    <a href="{{ route('client.login') }}" class="dropdown-item">Login</a>
-                    <a href="{{ route('client.register') }}" class="dropdown-item">Register</a>
+            @auth('user')
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        <span>
+                            {{-- {{ ucwords(auth('user')->user()->name) }} --}}
+                            More
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="{{ route('client.logout') }}" class="dropdown-item">Logout</a>
+                    </div>
                 </div>
-            </div> --}}
+            @endauth
         </nav>
 
         <!-- Menu -->
