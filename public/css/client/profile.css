@@ -1,12 +1,12 @@
 .container,
 .profile {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .profile {
+    width: 80%;
     height: 100%;
     flex-direction: column;
     padding: 4rem;
@@ -16,13 +16,13 @@
     color: var(--main-color);
     font-size: 4.5rem;
     text-transform: uppercase;
+    margin-bottom: 2rem;
 }
 
 .container {
-    width: 80%;
-    padding: 4rem;
+    width: 100%;
     gap: 6rem;
-    padding: 4rem;
+    margin-top: 2rem;
 }
 
 .profile-card {
@@ -72,6 +72,5 @@
 }
 
 .form-password {
-    width: 80%;
-    padding: 4rem;
+    margin-top: 2rem;
 }

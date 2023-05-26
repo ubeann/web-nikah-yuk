@@ -22,13 +22,14 @@
 
             <!-- Profile Form Edit -->
             <div class="form-box">
-                <form action="{{ route('client.register.submit') }}" method="POST">
+                <form action="{{ route('client.profile.update.profile') }}" method="POST">
                     <h2>
                         <i class="fas fa-user"></i>
                         Edit Profile
                     </h2>
 
                     @csrf
+                    @method('PUT')
 
                     <div class="input-group">
                         <label for="name">Name</label>
@@ -82,13 +83,14 @@
         </div>
 
         <div class="form-box form-password">
-            <form action="{{ route('client.register.submit') }}" method="POST">
+            <form action="{{ route('client.profile.update.password') }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin mengganti password?')">
                 <h2>
                     <i class="fas fa-lock"></i>
                     Change Password
                 </h2>
 
                 @csrf
+                @method('PATCH')
 
                 <div class="input-group">
                     <label for="current_password">Current Password</label>
