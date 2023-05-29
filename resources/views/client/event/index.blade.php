@@ -49,38 +49,37 @@
                     <tbody>
                         @forelse ($events as $event)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $event->name }}</td>
-                                <td>{{ $event->date }}</td>
-                                <td>{{ $event->type }}</td>
-                                <td>
-                                    <span>
+                                <td data-label="No:">{{ $loop->iteration }}</td>
+                                <td data-label="Name:">{{ $event->name }}</td>
+                                <td data-label="Date:">{{ (new DateTime($event->date))->format('d F Y') }}</td>
+                                <td data-label="Type:">{{ ucfirst($event->service) }}</td>
+                                <td data-label="Status:">
+                                    <span class="status status-{{ $event->status }}">
                                         {{ $event->status }}
                                     </span>
                                 </td>
-                                <td>
+                                <td data-label="Action:">
                                     <!-- Detail button -->
                                     <a href="{{ route('client.event.detail', ['id' => $event->id]) }}" class="btn btn-info">
                                         <i class="fas fa-info-circle"></i>
-                                        Detail
                                     </a>
 
-                                    <!-- Edit button -->
-                                    <a href="{{ route('client.event.edit.form', ['id' => $event->id]) }}" class="btn btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                        Edit
-                                    </a>
+                                    @if($event->status == 'pending')
+                                        <!-- Edit button -->
+                                        <a href="{{ route('client.event.edit.form', ['id' => $event->id]) }}" class="btn btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
 
-                                    <!-- Delete button -->
-                                    <form action="{{ route('client.event.delete', ['id' => $event->id]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
+                                        <!-- Delete button -->
+                                        <form action="{{ route('client.event.delete', ['id' => $event->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                            Delete
-                                        </button>
-                                    </form>
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

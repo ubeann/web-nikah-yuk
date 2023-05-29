@@ -13,7 +13,7 @@ class EventController extends Controller {
         $user = User::find(auth()->guard('user')->id());
 
         // Get events
-        $events = $user->events()->orderBy('created_at', 'desc')->get();
+        $events = $user->events()->orderBy('date', 'desc')->get();
 
         // Return view
         return view('client.event.index', compact('events'));
