@@ -16,12 +16,14 @@ class Event extends Model
      */
     protected $fillable = [
         'user_id',
+        'name',
         'service',
         'status',
         'price',
         'date',
         'location',
         'description',
+        'guest_url',
     ];
 
     /**
