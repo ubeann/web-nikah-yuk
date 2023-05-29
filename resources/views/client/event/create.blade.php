@@ -48,7 +48,7 @@
 
                 <div class="input-group">
                     <label for="date">Date</label>
-                    <input type="date" name="date" id="date" value="{{ old('date') }}">
+                    <input type="date" name="date" id="date" value="{{ old('date') }}" min="{{ date('Y-m-d') }}">
                     <small @if($errors->has('date')) class="active" @endif>
                         <i class="fas fa-exclamation-circle"></i>
                         {{ $errors->first('date') }}
