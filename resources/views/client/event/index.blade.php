@@ -71,7 +71,7 @@
                                         </a>
 
                                         <!-- Delete button -->
-                                        <form action="{{ route('client.event.delete', ['id' => $event->id]) }}" method="POST">
+                                        <form action="{{ route('client.event.delete', ['id' => $event->id]) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin membatalkan event ini?')">
                                             @csrf
                                             @method('DELETE')
 
