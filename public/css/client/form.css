@@ -56,6 +56,46 @@
     color: #ffffff64;
 }
 
+.form-box .input-group select {
+    width: 100%;
+    background: #333;
+    border: 2px solid transparent;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: #fff;
+    border-radius: .5rem;
+}
+
+.form-box .input-group select:focus {
+    border: 2px solid var(--main-color);
+}
+
+.form-box .input-group select::placeholder {
+    color: #ffffff64;
+}
+
+.form-box .input-group textarea {
+    width: 100%;
+    background: #333;
+    border: 2px solid transparent;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: #fff;
+    border-radius: .5rem;
+    resize: none;
+    min-height: 10rem;
+}
+
+.form-box .input-group textarea:focus {
+    border: 2px solid var(--main-color);
+}
+
+.form-box .input-group textarea::placeholder {
+    color: #ffffff64;
+}
+
 .form-box .input-group label {
     color: #fff;
     font-size: 2rem;

@@ -1,0 +1,25 @@
+.event {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.event {
+    width: 60%;
+    padding: 4rem;
+}
+
+.event h1 {
+    color: var(--main-color);
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+/* media queries */
+@media (max-width: 1024px) {
+    .event {
+        width: 100%;
+    }
+}

@@ -17,4 +17,9 @@ class EventController extends Controller {
         // Return view
         return view('client.event.index', compact('events'));
     }
+
+    public function createForm() {
+        // Return view
+        return view('client.event.create');
+    }
 }
