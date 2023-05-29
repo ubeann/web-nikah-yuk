@@ -90,6 +90,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="{{ route('client.profile.form') }}" class="dropdown-item">Profile</a>
+                        <a href="{{ route('client.event.index') }}" class="dropdown-item">Event</a>
                         <a href="{{ route('client.logout') }}" class="dropdown-item">Logout</a>
                     </div>
                 </div>
