@@ -94,6 +94,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/{id}/detail', [AdminEventController::class, 'detail'])->name('detail');
             Route::get('/{id}/edit', [AdminEventController::class, 'editForm'])->name('edit.form');
             Route::put('/{id}/edit', [AdminEventController::class, 'edit'])->name('edit.submit');
+            Route::patch('/{id}/confirmed', [AdminEventController::class, 'confirmed'])->name('confirmed');
+            Route::patch('/{id}/rejected', [AdminEventController::class, 'rejected'])->name('rejected');
             Route::delete('/{id}/delete', [AdminEventController::class, 'delete'])->name('delete');
         });
 
