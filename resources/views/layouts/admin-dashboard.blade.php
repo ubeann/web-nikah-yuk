@@ -131,6 +131,15 @@
                             <span class="menu-item-label">Client</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="has-icon {{ str_starts_with(request()->url(), route('admin.event.index')) ? 'is-active' : '' }}"
+                            href="{{ route('admin.event.index') }}">
+                            <span class="icon">
+                                <i class="mdi mdi-calendar"></i>
+                            </span>
+                            <span class="menu-item-label">Event</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Security -->

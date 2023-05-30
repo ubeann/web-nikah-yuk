@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\PagesController as AdminPagesController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
 
 // Client Controller
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
@@ -85,6 +86,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::put('/{id}/edit', [AdminClientController::class, 'updateProfile'])->name('update.profile');
             Route::patch('/{id}/edit', [AdminClientController::class, 'updatePassword'])->name('update.password');
             Route::delete('/{id}/delete', [AdminClientController::class, 'delete'])->name('delete');
+        });
+
+        // Events
+        Route::group(['prefix' => 'event', 'as' => 'event.'], function () {
+            Route::get('/', [AdminEventController::class, 'index'])->name('index');
+            Route::get('/{id}/detail', [AdminEventController::class, 'detail'])->name('detail');
+            Route::get('/{id}/edit', [AdminEventController::class, 'editForm'])->name('edit.form');
+            Route::put('/{id}/edit', [AdminEventController::class, 'edit'])->name('edit.submit');
+            Route::delete('/{id}/delete', [AdminEventController::class, 'delete'])->name('delete');
         });
 
         // Settings
