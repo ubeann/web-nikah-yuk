@@ -14,7 +14,7 @@
                 <span class="icon"><i class="mdi mdi-calendar"></i></span>
                 Events ({{ $events->total() }})
             </p>
-            <a href="#" class="card-header-icon">
+            <a href="javascript:location.reload();" class="card-header-icon">
                 <span class="icon"><i class="mdi mdi-reload"></i></span>
             </a>
         </header>
