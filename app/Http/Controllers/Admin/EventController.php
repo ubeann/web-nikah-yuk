@@ -17,6 +17,22 @@ class EventController extends Controller {
         return view('admin.event.detail', compact('event'));
     }
 
+    public function editForm($id) {
+        $event = Event::findOrFail($id);
+        return view('admin.event.edit', compact('event'));
+    }
+
+    public function edit(Request $request, $id) {
+        $event = Event::findOrFail($id);
+        $event->name = $request->name;
+        $event->service = $request->service;
+        $event->date = $request->date;
+        $event->location = $request->location;
+        $event->description = $request->description;
+        $event->save();
+        return redirect()->route('admin.event.index')->with('success', 'Berhasil mengubah event ' . $event->name);
+    }
+
     public function confirmed($id) {
         $event = Event::findOrFail($id);
 
