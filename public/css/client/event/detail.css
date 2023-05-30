@@ -1,0 +1,146 @@
+.container,
+.event {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.event {
+    width: 80%;
+    padding: 4rem;
+}
+
+.event h1 {
+    color: var(--main-color);
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.container {
+    width: 100%;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.container .title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .title h2 {
+    color: #fff;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.container .list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.container .list .item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.container .list .item .label {
+    width: 120px;
+    font-weight: bold;
+}
+
+.container .list .item .label::after{
+    content: ':';
+}
+
+.container .list .item .label p {
+    width: 100%;
+    text-align: left;
+}
+
+.container .list .item .value {
+    flex: 1;
+    max-width: calc(100% - 120px);
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.container .list .item .value .status {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.container .list .item .value .status-pending {
+    background: #f1c40f;
+    color: #fff;
+}
+
+.container .list .item .value .status-canceled,
+.container .list .item .value .status-rejected {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.container .list .item .value .status-confirmed,
+.container .list .item .value .status-completed {
+    background: #2ecc71;
+    color: #fff;
+}
+
+/* media query */
+@media only screen and (max-width: 1024px) {
+    .event {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container .list .item .label {
+        width: 100px;
+    }
+
+    .container .list .item .value {
+        max-width: calc(100% - 100px);
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .container .list {
+        gap: 1rem;
+    }
+
+    .container .list .item {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    .container .list .item .label {
+        width: 100%;
+    }
+
+    .container .list .item .label::after {
+        content: '';
+    }
+
+    .container .list .item .value {
+        max-width: 100%;
+    }
+}

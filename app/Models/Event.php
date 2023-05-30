@@ -43,6 +43,13 @@ class Event extends Model
     }
 
     /**
+     * Get the description with "Tidak ada deskripsi" if null.
+     */
+    public function getDescriptionAttribute($value) {
+    return $value ?? 'Tidak ada deskripsi';
+}
+
+    /**
      * Get the user that owns the event.
      */
     public function user() {
