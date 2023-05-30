@@ -10,9 +10,7 @@ use App\Http\Controllers\Admin\PagesController as AdminPagesController;
 // Client Controller
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
 use App\Http\Controllers\Client\PagesController as ClientPagesController;
-
-//! Experimental Controller
-use App\Http\Controllers\ExperimentalController;
+use App\Http\Controllers\Client\EventController as ClientEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,14 +48,21 @@ Route::group(['as' => 'client.'], function () {
             Route::put('/edit', [ClientAuthController::class, 'updateProfile'])->name('update.profile');
             Route::patch('/edit', [ClientAuthController::class, 'updatePassword'])->name('update.password');
         });
+
+        // Events
+        Route::group(['prefix' => 'event', 'as' => 'event.'], function () {
+            Route::get('/', [ClientEventController::class, 'index'])->name('index');
+            Route::get('/create', [ClientEventController::class, 'createForm'])->name('create.form');
+            Route::post('/create', [ClientEventController::class, 'create'])->name('create.submit');
+            Route::get('/{id}/detail', [ClientEventController::class, 'detail'])->name('detail');
+            Route::get('/{id}/edit', [ClientEventController::class, 'editForm'])->name('edit.form');
+            Route::put('/{id}/edit', [ClientEventController::class, 'edit'])->name('edit.submit');
+            Route::delete('/{id}/delete', [ClientEventController::class, 'delete'])->name('delete');
+        });
     });
 
     // Logout
     Route::get('/logout', [ClientAuthController::class, 'logout'])->name('logout');
-});
-
-// User routes
-Route::group(['as' => 'user.'], function () {
 });
 
 // Admin routes
