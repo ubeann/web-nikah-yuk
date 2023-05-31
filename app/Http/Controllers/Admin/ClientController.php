@@ -16,6 +16,17 @@ class ClientController extends Controller {
         return view('admin.client.index', compact('clients'));
     }
 
+    public function detail($id) {
+        // Get client
+        $client = User::findOrFail($id);
+
+        // Get Events
+        $events = $client->events()->orderBy('name', 'asc')->paginate(10);
+
+        // Return view
+        return view('admin.client.detail', compact('client', 'events'));
+    }
+
     public function edit($id) {
         // Get client
         $client = User::findOrFail($id);

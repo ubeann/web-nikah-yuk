@@ -34,6 +34,7 @@
     <!-- Include your CSS stylesheets here -->
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/admin/dashboard.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/full-screen.css') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -129,6 +130,15 @@
                                 <i class="mdi mdi-account-multiple"></i>
                             </span>
                             <span class="menu-item-label">Client</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-icon {{ str_starts_with(request()->url(), route('admin.event.index')) ? 'is-active' : '' }}"
+                            href="{{ route('admin.event.index') }}">
+                            <span class="icon">
+                                <i class="mdi mdi-calendar"></i>
+                            </span>
+                            <span class="menu-item-label">Event</span>
                         </a>
                     </li>
                 </ul>

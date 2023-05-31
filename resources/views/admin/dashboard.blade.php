@@ -147,7 +147,10 @@
                                         </td>
                                         <td class="is-actions-cell">
                                             <div class="buttons is-right">
-                                                <a class="button is-small is-warning jb-modal" type="button" href="{{ route('admin.client.edit', $client->id) }}">
+                                                <a class="button is-small is-info" href="{{ route('admin.client.detail', $client->id) }}">
+                                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                                                </a>
+                                                <a class="button is-small is-warning" href="{{ route('admin.client.edit', $client->id) }}">
                                                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                                                 </a>
                                                 <button class="button is-small is-danger jb-modal" data-target="client-modal-{{ $client->id }}"
