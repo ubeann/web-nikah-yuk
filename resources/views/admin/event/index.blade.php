@@ -55,7 +55,11 @@
                                                     class="is-rounded">
                                             </div>
                                         </td>
-                                        <td data-label="Client">{{ $event->user->name }}</td>
+                                        <td data-label="Client">
+                                            <a href="{{ route('admin.client.detail', $event->user->id) }}">
+                                                {{ $event->user->name }}
+                                            </a>
+                                        </td>
                                         <td data-label="Name">{{ $event->name }}</td>
                                         <td data-label="Date">
                                             <small class="has-text-grey is-abbr-like" title="{{ $event->date }}">
@@ -91,10 +95,10 @@
                                         </td>
                                         <td class="is-actions-cell">
                                             <div class="buttons is-right">
-                                                <a class="button is-small is-info jb-modal" type="button" href="{{ route('admin.event.detail', $event->id) }}">
+                                                <a class="button is-small is-info" href="{{ route('admin.event.detail', $event->id) }}">
                                                     <span class="icon"><i class="mdi mdi-eye"></i></span>
                                                 </a>
-                                                <a class="button is-small is-warning jb-modal" type="button" href="{{ route('admin.event.edit.form', $event->id) }}">
+                                                <a class="button is-small is-warning" href="{{ route('admin.event.edit.form', $event->id) }}">
                                                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                                                 </a>
                                                 <button class="button is-small is-danger jb-modal" data-target="event-modal-{{ $event->id }}"

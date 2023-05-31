@@ -82,6 +82,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         // Clients
         Route::group(['prefix' => 'client', 'as' => 'client.'], function () {
             Route::get('/', [AdminClientController::class, 'index'])->name('index');
+            Route::get('/{id}/detail', [AdminClientController::class, 'detail'])->name('detail');
             Route::get('/{id}/edit', [AdminClientController::class, 'edit'])->name('edit');
             Route::put('/{id}/edit', [AdminClientController::class, 'updateProfile'])->name('update.profile');
             Route::patch('/{id}/edit', [AdminClientController::class, 'updatePassword'])->name('update.password');

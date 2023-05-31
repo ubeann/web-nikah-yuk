@@ -23,7 +23,12 @@
         </header>
         <div class="card-content">
             <div class="content">
-                <p><strong>Client:</strong> {{ $event->user->name }}</p>
+                <p>
+                    <strong>Client:</strong>
+                    <a href="{{ route('admin.client.detail', $event->user->id) }}">
+                        {{ $event->user->name }}
+                    </a>
+                </p>
                 <p><strong>Name:</strong> {{ $event->name }}</p>
                 <p>
                     <strong>Service:</strong>
@@ -47,8 +52,14 @@
                 <p><strong>Date:</strong> {{ $event->date->format('d M Y') }}</p>
                 <p><strong>Location:</strong> {{ $event->location }}</p>
                 <p><strong>Description:</strong> {{ $event->description }}</p>
-                <p><strong>Created At:</strong> {{ $event->created_at }}</p>
-                <p><strong>Updated At:</strong> {{ $event->updated_at }}</p>
+                <p><strong>Created At:</strong>
+                    {{ $event->created_at->format('d F Y, H:i:s') }}
+                    <small class="has-text-grey is-abbr-like">({{ $event->created_at->diffForHumans() }})</small>
+                </p>
+                <p><strong>Updated At:</strong>
+                    {{ $event->updated_at->format('d F Y, H:i:s') }}
+                    <small class="has-text-grey is-abbr-like">({{ $event->updated_at->diffForHumans() }})</small>
+                </p>
             </div>
 
             @if($event->status != 'canceled')
