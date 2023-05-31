@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-    <!-- Client Tabel -->
     <div class="card has-table has-mobile-sort-spaced">
         <header class="card-header">
             <p class="card-header-title">
