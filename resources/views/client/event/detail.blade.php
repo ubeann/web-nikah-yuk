@@ -78,6 +78,17 @@
 
                 <div class="item">
                     <div class="label">
+                        <p>Guest URL</p>
+                    </div>
+                    <div class="value">
+                        <a href="{{ route('client.guest.form', ['id' => $event->guest_url]) }}">
+                            {{ route('client.guest.form', ['id' => $event->guest_url]) }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="label">
                         <p>Description</p>
                     </div>
                     <div class="value">
@@ -117,8 +128,39 @@
             <div class="title">
                 <h2>
                     <i class="fas fa-users"></i>
-                    Guest List
+                    Guest List ({{ $guests->count() }})
                 </h2>
+            </div>
+            <div class="table-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($guests as $guest)
+                            <tr>
+                                <td data-label="No:">{{ $loop->iteration }}</td>
+                                <td data-label="Name:">{{ $guest->name }}</td>
+                                <td data-label="Phone:">{{ $guest->phone }}</td>
+                                <td data-label="Address:">{{ $guest->address }}</td>
+                                <td data-label="Timestamp:">
+                                    {{ $guest->created_at->format('d F Y H:i:s') }}
+                                    ({{ $guest->created_at->diffForHumans() }})
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5">No data available</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

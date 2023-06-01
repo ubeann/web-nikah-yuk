@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('guest_url')->nullable();
             $table->foreign('user_id')
                 ->references('id')
+                ->onDelete('cascade')
                 ->on('users');
             //--------------------------------
             // location from google map

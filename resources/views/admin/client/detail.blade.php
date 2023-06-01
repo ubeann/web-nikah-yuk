@@ -22,18 +22,71 @@
             </button>
         </header>
         <div class="card-content">
-            <div class="content">
-                <p><strong>Name:</strong> {{ $client->name }}</p>
-                <p><strong>Email:</strong> {{ $client->email }}</p>
-                <p><strong>Phone:</strong> {{ $client->phone }}</p>
-                <p><strong>Created At:</strong>
-                    {{ $client->created_at->format('d F Y, H:i:s') }}
-                    <small class="has-text-grey is-abbr-like">({{ $client->created_at->diffForHumans() }})</small>
-                </p>
-                <p><strong>Updated At:</strong>
-                    {{ $client->updated_at->format('d F Y, H:i:s') }}
-                    <small class="has-text-grey is-abbr-like">({{ $client->updated_at->diffForHumans() }})</small>
-                </p>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Name</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $client->name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Email</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $client->email }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Phone</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $client->phone }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Created At</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>
+                                {{ $client->created_at->format('d F Y, H:i:s') }}
+                                <small class="has-text-grey is-abbr-like">({{ $client->created_at->diffForHumans() }})</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Updated At</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>
+                                {{ $client->updated_at->format('d F Y, H:i:s') }}
+                                <small class="has-text-grey is-abbr-like">({{ $client->updated_at->diffForHumans() }})</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

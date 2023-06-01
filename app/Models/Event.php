@@ -57,6 +57,14 @@ class Event extends Model
     }
 
     /**
+     * Get the event's guests.
+     */
+
+    public function guests() {
+        return $this->hasMany(Guest::class);
+    }
+
+    /**
      * Get the event's photos.
      */
     // public function photos() {

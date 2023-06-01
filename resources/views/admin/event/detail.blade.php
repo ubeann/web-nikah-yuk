@@ -22,44 +22,159 @@
             </button>
         </header>
         <div class="card-content">
-            <div class="content">
-                <p>
-                    <strong>Client:</strong>
-                    <a href="{{ route('admin.client.detail', $event->user->id) }}">
-                        {{ $event->user->name }}
-                    </a>
-                </p>
-                <p><strong>Name:</strong> {{ $event->name }}</p>
-                <p>
-                    <strong>Service:</strong>
-                    <span class="tag is-rounded">{{ ucwords($event->service) }}</span>
-                </p>
-                <p>
-                    <strong>Status:</strong>
-                    <span class="tag is-rounded
-                    @if ($event->status == 'pending')
-                        is-warning
-                    @elseif (in_array($event->status, ['confirmed', 'completed']))
-                        is-success
-                    @elseif (in_array($event->status, ['canceled', 'rejected']))
-                        is-danger
-                    @endif
-                    ">
-                        {{ $event->status }}
-                    </span>
-                </p>
-                <p><strong>Price:</strong> {{ $event->price }}</p>
-                <p><strong>Date:</strong> {{ $event->date->format('d M Y') }}</p>
-                <p><strong>Location:</strong> {{ $event->location }}</p>
-                <p><strong>Description:</strong> {{ $event->description }}</p>
-                <p><strong>Created At:</strong>
-                    {{ $event->created_at->format('d F Y, H:i:s') }}
-                    <small class="has-text-grey is-abbr-like">({{ $event->created_at->diffForHumans() }})</small>
-                </p>
-                <p><strong>Updated At:</strong>
-                    {{ $event->updated_at->format('d F Y, H:i:s') }}
-                    <small class="has-text-grey is-abbr-like">({{ $event->updated_at->diffForHumans() }})</small>
-                </p>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Client</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <a href="{{ route('admin.client.detail', $event->user->id) }}">
+                                {{ $event->user->name }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Name</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $event->name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Service</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span class="tag is-rounded">{{ ucwords($event->service) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Status</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span class="tag is-rounded
+                            @if ($event->status == 'pending')
+                                is-warning
+                            @elseif (in_array($event->status, ['confirmed', 'completed']))
+                                is-success
+                            @elseif (in_array($event->status, ['canceled', 'rejected']))
+                                is-danger
+                            @endif
+                            ">
+                                {{ $event->status }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Guest URL</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            @if($event->guest_url)
+                                <a href="{{ route('client.guest.form', $event->guest_url) }}">{{ $event->guest_url }}</a>
+                            @else
+                                <span class="tag is-rounded is-danger">Not Set</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Price</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $event->price }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Date</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $event->date->format('d M Y') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Location</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $event->location }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Description</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $event->description }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Created At</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>
+                                {{ $event->created_at->format('d F Y, H:i:s') }}
+                                <small class="has-text-grey is-abbr-like">({{ $event->created_at->diffForHumans() }})</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Updated At</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>
+                                {{ $event->updated_at->format('d F Y, H:i:s') }}
+                                <small class="has-text-grey is-abbr-like">({{ $event->updated_at->diffForHumans() }})</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             @if($event->status != 'canceled')
