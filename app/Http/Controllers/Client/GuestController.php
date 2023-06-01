@@ -7,7 +7,7 @@ use App\Models\Event;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 
-class EventController extends Controller {
+class GuestController extends Controller {
     public function form($id) {
         // Get event
         $event = Event::where('guest_url', $id)->first();
