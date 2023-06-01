@@ -64,8 +64,11 @@ class EventController extends Controller {
         // Get event
         $event = Event::find($id);
 
+        // Get guests
+        $guests = $event->guests()->orderBy('created_at', 'desc')->get();
+
         // Return view
-        return view('client.event.detail', compact('event'));
+        return view('client.event.detail', compact('event', 'guests'));
     }
 
     public function editForm($id) {
