@@ -10,8 +10,9 @@ use App\Http\Controllers\Admin\EventController as AdminEventController;
 
 // Client Controller
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
-use App\Http\Controllers\Client\PagesController as ClientPagesController;
 use App\Http\Controllers\Client\EventController as ClientEventController;
+use App\Http\Controllers\Client\GuestController as ClientGuestController;
+use App\Http\Controllers\Client\PagesController as ClientPagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,9 +65,9 @@ Route::group(['as' => 'client.'], function () {
 
     // Guest
     Route::group(['prefix' => 'event', 'as' => 'guest.'], function () {
-        Route::get('/{id}/guest', [ClientEventController::class, 'guestForm'])->name('form');
-        Route::post('/{id}/guest', [ClientEventController::class, 'guestSubmit'])->name('submit');
-        Route::get('/{id}/greet', [ClientEventController::class, 'guestGreet'])->name('greet');
+        Route::get('/{id}/guest', [ClientGuestController::class, 'form'])->name('form');
+        Route::post('/{id}/guest', [ClientGuestController::class, 'submit'])->name('submit');
+        Route::get('/{id}/greet', [ClientGuestController::class, 'greet'])->name('greet');
     });
 
     // Logout
@@ -106,6 +107,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::patch('/{id}/rejected', [AdminEventController::class, 'rejected'])->name('rejected');
             Route::delete('/{id}/delete', [AdminEventController::class, 'delete'])->name('delete');
         });
+
+        // Guests
+
 
         // Settings
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
