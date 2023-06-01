@@ -131,4 +131,12 @@ class EventController extends Controller {
         // Return view
         return redirect()->route('client.event.index')->with('alert', ['type' => 'success', 'message' => 'Event ' . $event->name . ' berhasil dibatalkan.']);
     }
+
+    public function guestForm($uuid) {
+        // Get event
+        $event = Event::where('guest_url', $uuid)->first();
+
+        // Return view
+        return view('client.guest-registration', compact('event'));
+    }
 }

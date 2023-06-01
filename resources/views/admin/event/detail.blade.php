@@ -90,7 +90,7 @@
                     <div class="field">
                         <div class="control">
                             @if($event->guest_url)
-                                <a href="{{ $event->guest_url }}">{{ $event->guest_url }}</a>
+                                <a href="{{ route('client.guest.form', $event->guest_url) }}">{{ $event->guest_url }}</a>
                             @else
                                 <span class="tag is-rounded is-danger">Not Set</span>
                             @endif

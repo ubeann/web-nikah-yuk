@@ -62,6 +62,12 @@ Route::group(['as' => 'client.'], function () {
         });
     });
 
+    // Guest
+    Route::group(['prefix' => 'event', 'as' => 'guest.'], function () {
+        Route::get('/{id}/guest', [ClientEventController::class, 'guestForm'])->name('form');
+        Route::post('/{id}/guest', [ClientEventController::class, 'guestSubmit'])->name('submit');
+    });
+
     // Logout
     Route::get('/logout', [ClientAuthController::class, 'logout'])->name('logout');
 });
