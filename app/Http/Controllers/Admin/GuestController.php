@@ -16,4 +16,10 @@ class GuestController extends Controller {
         $event = $guest->event;
         return view('admin.guest.detail', compact('guest', 'event'));
     }
+
+    public function delete($id) {
+        $guest = Guest::findOrFail($id);
+        $guest->delete();
+        return redirect()->route('admin.guest.index')->with('success', 'Guest ' . $guest->name . ' deleted successfully');
+    }
 }
