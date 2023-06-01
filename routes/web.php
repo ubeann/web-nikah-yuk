@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 // Admin Controller
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
-use App\Http\Controllers\Admin\PagesController as AdminPagesController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\GuestController as AdminGuestController;
+use App\Http\Controllers\Admin\PagesController as AdminPagesController;
 
 // Client Controller
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
@@ -109,6 +110,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
 
         // Guests
+        Route::group(['prefix' => 'guest', 'as' => 'guest.'], function () {
+            Route::get('/', [AdminGuestController::class, 'index'])->name('index');
+            Route::get('/{id}/detail', [AdminGuestController::class, 'detail'])->name('detail');
+            Route::get('/{id}/edit', [AdminGuestController::class, 'editForm'])->name('edit.form');
+            Route::put('/{id}/edit', [AdminGuestController::class, 'edit'])->name('edit.submit');
+            Route::delete('/{id}/delete', [AdminGuestController::class, 'delete'])->name('delete');
+        });
 
 
         // Settings
