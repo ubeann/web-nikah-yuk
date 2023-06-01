@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class EventController extends Controller {
     public function index() {
@@ -40,7 +41,19 @@ class EventController extends Controller {
             return redirect()->route('admin.event.index')->with('error', 'Event ' . $event->name . ' telah dibatalkan');
 
         $event->status = 'confirmed';
+        if ($event->guest_url === null) {
+            $uuid = Str::random(10);
+            $existingEvent = Event::where('guest_url', $uuid)->exists();
+
+            while ($existingEvent) {
+                $uuid = Str::random(10);
+                $existingEvent = Event::where('guest_url', $uuid)->exists();
+            }
+
+            $event->guest_url = $uuid;
+        }
         $event->save();
+
         return redirect()->route('admin.event.index')->with('success', 'Berhasil mengkonfirmasi event ' . $event->name);
     }
 
