@@ -15,7 +15,8 @@ class EventController extends Controller {
 
     public function detail($id) {
         $event = Event::findOrFail($id);
-        return view('admin.event.detail', compact('event'));
+        $guests = $event->guests()->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.event.detail', compact('event', 'guests'));
     }
 
     public function editForm($id) {

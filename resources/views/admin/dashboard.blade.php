@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <!-- TODO: Edit later -->
+        <!-- Events -->
         <div class="tile is-parent">
             <div class="card tile is-child">
                 <div class="card-content">
@@ -44,16 +44,18 @@
                         <div class="level-item">
                             <div class="is-widget-label">
                                 <h3 class="subtitle is-spaced">
-                                    Sales
+                                    Events
                                 </h3>
                                 <h1 class="title">
-                                    Rp. 5.000.000.000
+                                    {{ $card['event'] }}
                                 </h1>
                             </div>
                         </div>
                         <div class="level-item has-widget-icon">
-                            <div class="is-widget-icon"><span class="icon has-text-info is-large"><i
-                                        class="mdi mdi-cart-outline mdi-48px"></i></span>
+                            <div class="is-widget-icon">
+                                <span class="icon has-text-danger is-large">
+                                    <i class="mdi mdi-calendar-multiple mdi-48px"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -61,7 +63,7 @@
             </div>
         </div>
 
-        <!-- TODO: Edit later -->
+        <!-- Guests -->
         <div class="tile is-parent">
             <div class="card tile is-child">
                 <div class="card-content">
@@ -69,16 +71,18 @@
                         <div class="level-item">
                             <div class="is-widget-label">
                                 <h3 class="subtitle is-spaced">
-                                    Performance
+                                    Guests
                                 </h3>
                                 <h1 class="title">
-                                    150%
+                                    {{ $card['guest'] }}
                                 </h1>
                             </div>
                         </div>
                         <div class="level-item has-widget-icon">
-                            <div class="is-widget-icon"><span class="icon has-text-success is-large"><i
-                                        class="mdi mdi-finance mdi-48px"></i></span>
+                            <div class="is-widget-icon">
+                                <span class="icon has-text-info is-large">
+                                    <i class="mdi mdi-book mdi-48px"></i>
+                                </span>
                             </div>
                         </div>
                     </div>

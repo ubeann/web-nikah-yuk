@@ -5,13 +5,15 @@ use Illuminate\Support\Facades\Route;
 // Admin Controller
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
-use App\Http\Controllers\Admin\PagesController as AdminPagesController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\GuestController as AdminGuestController;
+use App\Http\Controllers\Admin\PagesController as AdminPagesController;
 
 // Client Controller
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
-use App\Http\Controllers\Client\PagesController as ClientPagesController;
 use App\Http\Controllers\Client\EventController as ClientEventController;
+use App\Http\Controllers\Client\GuestController as ClientGuestController;
+use App\Http\Controllers\Client\PagesController as ClientPagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,9 +66,9 @@ Route::group(['as' => 'client.'], function () {
 
     // Guest
     Route::group(['prefix' => 'event', 'as' => 'guest.'], function () {
-        Route::get('/{id}/guest', [ClientEventController::class, 'guestForm'])->name('form');
-        Route::post('/{id}/guest', [ClientEventController::class, 'guestSubmit'])->name('submit');
-        Route::get('/{id}/greet', [ClientEventController::class, 'guestGreet'])->name('greet');
+        Route::get('/{id}/guest', [ClientGuestController::class, 'form'])->name('form');
+        Route::post('/{id}/guest', [ClientGuestController::class, 'submit'])->name('submit');
+        Route::get('/{id}/greet', [ClientGuestController::class, 'greet'])->name('greet');
     });
 
     // Logout
@@ -106,6 +108,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::patch('/{id}/rejected', [AdminEventController::class, 'rejected'])->name('rejected');
             Route::delete('/{id}/delete', [AdminEventController::class, 'delete'])->name('delete');
         });
+
+        // Guests
+        Route::group(['prefix' => 'guest', 'as' => 'guest.'], function () {
+            Route::get('/', [AdminGuestController::class, 'index'])->name('index');
+            Route::get('/{id}/detail', [AdminGuestController::class, 'detail'])->name('detail');
+            Route::get('/{id}/edit', [AdminGuestController::class, 'editForm'])->name('edit.form');
+            Route::put('/{id}/edit', [AdminGuestController::class, 'edit'])->name('edit.submit');
+            Route::delete('/{id}/delete', [AdminGuestController::class, 'delete'])->name('delete');
+        });
+
 
         // Settings
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {

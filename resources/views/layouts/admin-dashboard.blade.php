@@ -141,6 +141,15 @@
                             <span class="menu-item-label">Event</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="has-icon {{ str_starts_with(request()->url(), route('admin.guest.index')) ? 'is-active' : '' }}"
+                            href="{{ route('admin.guest.index') }}">
+                            <span class="icon">
+                                <i class="mdi mdi-book"></i>
+                            </span>
+                            <span class="menu-item-label">Guest</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Security -->
