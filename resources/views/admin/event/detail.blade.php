@@ -38,6 +38,18 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
+                    <label class="label">Name</label>
+                </div>
+                <div class="field-body" style="display: flex; align-items: flex-end;">
+                    <div class="field">
+                        <div class="control">
+                            <span>{{ $event->name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
                     <label class="label">Service</label>
                 </div>
                 <div class="field-body" style="display: flex; align-items: flex-end;">
