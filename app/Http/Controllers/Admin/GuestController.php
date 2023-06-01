@@ -10,4 +10,10 @@ class GuestController extends Controller {
         $guests = Guest::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.guest.index', compact('guests'));
     }
+
+    public function detail($id) {
+        $guest = Guest::findOrFail($id);
+        $event = $guest->event;
+        return view('admin.guest.detail', compact('guest', 'event'));
+    }
 }
