@@ -78,6 +78,17 @@
 
                 <div class="item">
                     <div class="label">
+                        <p>Guest URL</p>
+                    </div>
+                    <div class="value">
+                        <a href="{{ route('client.guest.form', ['id' => $event->guest_url]) }}">
+                            {{ route('client.guest.form', ['id' => $event->guest_url]) }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="label">
                         <p>Description</p>
                     </div>
                     <div class="value">
