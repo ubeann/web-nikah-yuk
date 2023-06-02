@@ -163,21 +163,21 @@
             <div class="modal-card">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Confirm Delete</p>
-                    <button class="delete jb-modal-close" aria-label="close"></button>
+                    <button type="button" class="delete jb-modal-close" aria-label="close"></button>
                 </header>
                 <section class="modal-card-body">
                     <p>This will permanently delete <b>{{ $event->name }}</b> from your database.</p>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button jb-modal-close">Cancel</button>
+                    <button type="button" class="button jb-modal-close">Cancel</button>
                     <form action="{{ route('admin.event.delete', $event->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="button is-danger jb-modal-close">Delete</button>
+                        <button type="submit" class="button is-danger jb-modal-close">Delete</button>
                     </form>
                 </footer>
             </div>
-            <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
+            <button type="button" class="modal-close is-large jb-modal-close" aria-label="close"></button>
         </div>
     @endforeach
 @endsection

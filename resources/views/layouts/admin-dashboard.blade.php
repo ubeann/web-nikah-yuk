@@ -150,6 +150,15 @@
                             <span class="menu-item-label">Guest</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="has-icon {{ str_starts_with(request()->url(), route('admin.photo.index')) ? 'is-active' : '' }}"
+                            href="{{ route('admin.photo.index') }}">
+                            <span class="icon">
+                                <i class="mdi mdi-image"></i>
+                            </span>
+                            <span class="menu-item-label">Photo</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Security -->
@@ -202,8 +211,10 @@
                             </h1>
                         </div>
                     </div>
-                    <div class="level-right" style="display: none;">
-                        <div class="level-item"></div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            @yield('title-button')
+                        </div>
                     </div>
                 </div>
             </div>
@@ -213,10 +224,10 @@
         <section class="section is-main-section">
             <!-- Success -->
             @if (session('success'))
-            <div class="notification is-success">
-                <button class="delete jb-notification-dismiss"></button>
-                {{ session('success') }}
-            </div>
+                <div class="notification is-success">
+                    <button class="delete jb-notification-dismiss"></button>
+                    {{ session('success') }}
+                </div>
             @endif
 
             <!-- Error -->

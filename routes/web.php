@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\GuestController as AdminGuestController;
 use App\Http\Controllers\Admin\PagesController as AdminPagesController;
+use App\Http\Controllers\Admin\PhotoController as AdminPhotoController;
 
 // Client Controller
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
@@ -118,6 +119,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::delete('/{id}/delete', [AdminGuestController::class, 'delete'])->name('delete');
         });
 
+        // Photos
+        Route::group(['prefix' => 'photo', 'as' => 'photo.'], function () {
+            Route::get('/', [AdminPhotoController::class, 'index'])->name('index');
+            Route::post('/', [AdminPhotoController::class, 'upload'])->name('upload');
+            Route::delete('/{id}/delete', [AdminPhotoController::class, 'delete'])->name('delete');
+        });
 
         // Settings
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
