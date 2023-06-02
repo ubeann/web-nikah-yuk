@@ -81,9 +81,13 @@
                         <p>Guest URL</p>
                     </div>
                     <div class="value">
-                        <a href="{{ route('client.guest.form', ['id' => $event->guest_url]) }}">
-                            {{ route('client.guest.form', ['id' => $event->guest_url]) }}
-                        </a>
+                        @if($event->guest_url)
+                            <a href="{{ route('client.guest.form', ['id' => $event->guest_url]) }}">
+                                {{ route('client.guest.form', ['id' => $event->guest_url]) }}
+                            </a>
+                        @else
+                            -
+                        @endif
                     </div>
                 </div>
 
@@ -162,6 +166,35 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="container">
+            <div class="title">
+                <h2>
+                    <i class="fas fa-images"></i>
+                    Gallery ({{ $photos->count() }})
+                </h2>
+            </div>
+            @if($photos->isEmpty())
+                <div class="empty">
+                    <p>No data available</p>
+                </div>
+            @else
+                <div class="box-container">
+                    @foreach ($photos as $photo)
+                        <div class="box">
+                            <img src="{{ asset($photo->url) }}" alt="{{ $photo->filename }}">
+                            <h3 class="title">
+                                @if ($photo->created_at->diffInDays() > 30)
+                                    {{ $photo->created_at->format('d M Y') }}
+                                @else
+                                    {{ $photo->created_at->diffForHumans() }}
+                                @endif
+                            </h3>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 @endsection
