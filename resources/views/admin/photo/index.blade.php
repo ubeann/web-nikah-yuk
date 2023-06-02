@@ -24,7 +24,7 @@
                       </figure>
                     </div>
                     <div class="card-content is-overlay">
-                       <span class="tag is-primary">{{ $photo->event->name }}</span>
+                       <a href={{ route('admin.event.detail', $photo->event->id) }} class="tag is-primary">{{ $photo->event->name }}</a>
                         <a href="{{ asset($photo->url) }}" download="{{ $photo->filename }}" class="button is-primary is-pulled-right">
                             <span class="icon"><i class="mdi mdi-download"></i></span>
                         </a>

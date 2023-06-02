@@ -324,6 +324,104 @@
             @endif
         </div>
     </div>
+
+    <div class="columns is-multiline">
+        <div class="column is-12">
+            <h1 class="title is-4">
+                <span class="icon"><i class="mdi mdi-image-multiple"></i></span>
+                Photos of {{ $event->name }} ({{ $photos->total() }})
+            </h1>
+        </div>
+
+        @if ($photos->isEmpty())
+            <div class="column is-12">
+                <div class="notification is-warning">
+                    No photos found.
+                </div>
+            </div>
+        @else
+            @foreach ($photos as $photo)
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-image">
+                        <figure class="image is-4by3 is-cover">
+                            <img src="{{ asset($photo->url) }}" alt="{{ $photo->filename }}" style="object-fit: cover; object-position: center; width: 100%; height: 100%;">
+                        </figure>
+                        </div>
+                        <div class="card-content is-overlay">
+                        <span class="tag is-primary">{{ $photo->event->name }}</span>
+                            <a href="{{ asset($photo->url) }}" download="{{ $photo->filename }}" class="button is-primary is-pulled-right">
+                                <span class="icon"><i class="mdi mdi-download"></i></span>
+                            </a>
+                        <button class="button is-danger jb-modal is-pulled-right mx-2" type="button" data-target="photo-modal-{{ $photo->id }}">
+                            <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                        </button>
+                        </div>
+                        <div class="card-footer">
+                            {{-- <p class="card-footer-item">
+                                <span>
+                                    <span class="icon"><i class="mdi mdi-clock"></i></span>
+                                    @if ($photo->created_at->diffInDays() > 30)
+                                        {{ $photo->created_at->format('d M Y') }}
+                                    @else
+                                        {{ $photo->created_at->diffForHumans() }}
+                                    @endif
+                                </span>
+                            </p> --}}
+                            <p class="card-footer-item">
+                                <span>
+                                    <span class="icon"><i class="mdi mdi-file"></i></span>
+                                    {{ $photo->filename }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+            <div class="column is-12">
+                <div class="notification">
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <div class="buttons has-addons">
+                                    @if ($photos->lastPage() > 1)
+                                        @for ($i = 1; $i <= $photos->lastPage(); $i++)
+                                            {{-- Set page --}}
+                                            @php
+                                                $pageShown = 2;
+                                            @endphp
+
+                                            {{-- show 10 page, if more add ... --}}
+                                            @if ($i == 1 || $i == $photos->lastPage() || ($i >= $photos->currentPage() - $pageShown && $i <= $photos->currentPage() + $pageShown))
+                                                <a href="{{ $photos->url($i) }}"
+                                                    class="button {{ $photos->currentPage() == $i ? 'is-active' : '' }}">
+                                                    {{ $i }}
+                                                </a>
+                                            @endif
+
+                                            {{-- separator --}}
+                                            @if ($i == 2 && $photos->currentPage() - $pageShown > 2)
+                                                <span class="button">...</span>
+                                            @endif
+                                            @if ($i == $photos->currentPage() + $pageShown && $photos->currentPage() + $pageShown < $photos->lastPage())
+                                                <span class="button">...</span>
+                                            @endif
+                                        @endfor
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <small>Page {{ $photos->currentPage() }} of {{ $photos->lastPage() }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    </div>
 @endsection
 
 @section('modal')
