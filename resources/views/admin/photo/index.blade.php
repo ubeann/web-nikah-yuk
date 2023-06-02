@@ -59,6 +59,48 @@
                 </div>
             </div>
         @endforelse
+
+        <div class="column is-12">
+            <div class="notification">
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="buttons has-addons">
+                                @if ($photos->lastPage() > 1)
+                                    @for ($i = 1; $i <= $photos->lastPage(); $i++)
+                                        {{-- Set page --}}
+                                        @php
+                                            $pageShown = 2;
+                                        @endphp
+
+                                        {{-- show 10 page, if more add ... --}}
+                                        @if ($i == 1 || $i == $photos->lastPage() || ($i >= $photos->currentPage() - $pageShown && $i <= $photos->currentPage() + $pageShown))
+                                            <a href="{{ $photos->url($i) }}"
+                                                class="button {{ $photos->currentPage() == $i ? 'is-active' : '' }}">
+                                                {{ $i }}
+                                            </a>
+                                        @endif
+
+                                        {{-- separator --}}
+                                        @if ($i == 2 && $photos->currentPage() - $pageShown > 2)
+                                            <span class="button">...</span>
+                                        @endif
+                                        @if ($i == $photos->currentPage() + $pageShown && $photos->currentPage() + $pageShown < $photos->lastPage())
+                                            <span class="button">...</span>
+                                        @endif
+                                    @endfor
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <small>Page {{ $photos->currentPage() }} of {{ $photos->lastPage() }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
