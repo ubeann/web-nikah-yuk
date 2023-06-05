@@ -50,13 +50,19 @@ To get started with the project, follow the steps below:
     php artisan db:seed
     ```
 
-7. Start the development server using the following command:
+7. Run the storage link command to create a symbolic link from `public/storage` to `storage/app/public`:
+
+    ```bash
+    php artisan storage:link
+    ```
+
+8. Start the development server using the following command:
 
     ```bash
     php artisan serve
     ```
 
-8. Access the website by visiting `http://localhost:8000` in your web browser.
+9. Access the website by visiting `http://localhost:8000` in your web browser.
 
 ## Contribution 🤝
 
