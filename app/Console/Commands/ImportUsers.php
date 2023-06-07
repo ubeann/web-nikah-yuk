@@ -14,7 +14,7 @@ class ImportUsers extends Command
      *
      * @var string
      */
-    protected $signature = 'import:users {csv-file}';
+    protected $signature = 'user:import {csv-file}';
 
     /**
      * The console command description.
