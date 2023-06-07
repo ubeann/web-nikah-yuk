@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Event extends Model
+class Event extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +28,7 @@ class Event extends Model
         'location',
         'description',
         'guest_url',
+        'media'
     ];
 
     /**
@@ -34,6 +39,17 @@ class Event extends Model
     protected $casts = [
         'date' => 'date',
     ];
+
+    // Media Library
+    public function registerMediaCollections(): void {
+        $this->addMediaCollection('event');
+    }
+    public function registerMediaConversions(Media $media = null): void {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Manipulations::FIT_CROP, 300, 300)
+            ->nonQueued();
+    }
 
     /**
      * Get the price with Rupiah format.
