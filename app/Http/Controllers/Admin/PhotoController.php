@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\AddMediaToCollection;
 use App\Models\Event;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class PhotoController extends Controller {
                 'filename' => $photo->getClientOriginalName(),
                 'url' => 'storage/' . $path,
             ]);
+            AddMediaToCollection::dispatch($event, $photo->getRealPath(), $photo->getClientOriginalName(), 'photos');
         }
 
         return redirect()->back()->with('success', 'Photos uploaded on event ' . $event->name . ' successfully.');

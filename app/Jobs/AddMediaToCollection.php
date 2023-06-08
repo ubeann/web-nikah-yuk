@@ -17,14 +17,16 @@ class AddMediaToCollection implements ShouldQueue
     protected Model $model;
     protected string $collectionName;
     protected string $filePath;
+    protected string $fileName;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(Model $model, string $filePath, string $collectionName = 'default')
+    public function __construct(Model $model, string $filePath, string $fileName, string $collectionName = 'default')
     {
         $this->model = $model;
         $this->collectionName = $collectionName;
+        $this->fileName = $fileName;
         $this->filePath = $filePath;
     }
 
@@ -35,6 +37,7 @@ class AddMediaToCollection implements ShouldQueue
     {
         $this->model
             ->addMedia($this->filePath)
+            ->usingFileName($this->fileName)
             ->toMediaCollection($this->collectionName);
     }
 }
