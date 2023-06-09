@@ -12,7 +12,7 @@
         <img src="https://source.unsplash.com/random/900x900/?password" alt="">
 
         <div class="form-box">
-            <form action="{{ route('client.reset-password.submit') }}" method="POST">
+            <form action="{{ route('client.reset-password.submit', ['token' => $token]) }}" method="POST">
                 <h3>Reset Password</h3>
                 <p>Enter your new password, then confirm it</p>
 

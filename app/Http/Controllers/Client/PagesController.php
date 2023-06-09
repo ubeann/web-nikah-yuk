@@ -90,14 +90,11 @@ class PagesController extends Controller {
         return view('client.password.forgot-greet');
     }
 
-    public function resetPasswordForm(Request $request) {
+    public function resetPasswordForm($token) {
         // Check Auth
         if (auth()->guard('user')->check()) {
             return redirect()->route('client.landing');
         }
-
-        // Get token
-        $token = $request->query('token');
 
         // Return view
         return view('client.password.reset', compact('token'));
