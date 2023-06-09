@@ -53,8 +53,8 @@ Route::group(['as' => 'client.'], function () {
 
     // Reset Password
     Route::group(['prefix' => 'reset-password', 'as' => 'reset-password.'], function () {
-        Route::get('/', [ClientPagesController::class, 'resetPasswordForm'])->name('form');
-        Route::post('/', [ClientAuthController::class, 'resetPassword'])->name('submit');
+        Route::get('{token}', [ClientPagesController::class, 'resetPasswordForm'])->name('form');
+        Route::post('{token}', [ClientAuthController::class, 'resetPassword'])->name('submit');
     });
 
     // Authenticated routes

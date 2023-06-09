@@ -23,13 +23,7 @@
                 @endif
 
                 @csrf
-                <div class="input-group">
-                    <input type="hidden" name="token" id="token" placeholder="123456" value="{{ old('token', $token) }}">
-                    <small @if($errors->has('token')) class="active" @endif>
-                        <i class="fas fa-exclamation-circle"></i>
-                        {{ $errors->first('token') }}
-                    </small>
-                </div>
+                <input type="hidden" name="token" id="token" placeholder="123456" value="{{ old('token', $token) }}">
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" placeholder="********">
