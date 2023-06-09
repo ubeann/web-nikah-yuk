@@ -86,6 +86,57 @@ class AuthController extends Controller {
         return redirect()->route('client.login.form');
     }
 
+    public function forgotPassword(Request $request) {
+        // Check Auth
+        if (auth()->guard('user')->check()) {
+            return redirect()->route('client.landing');
+        }
+
+        // Validate request
+        $request->validate([
+            'email' => 'required|exists:users,email',
+        ]);
+
+        // Get user
+        $user = User::where('email', $request->email)->first();
+
+        // Create token
+        $token = $user->createToken('forgot-password')->plainTextToken;
+
+        // Send email
+        $user->sendForgotPasswordEmail($token);
+
+        // Redirect to forgot password sent page
+        return redirect()->route('client.forgot-password.sent');
+    }
+
+    public function resetPassword(Request $request) {
+        // Check Auth
+        if (auth()->guard('user')->check()) {
+            return redirect()->route('client.landing');
+        }
+
+        // Validate request
+        $request->validate([
+            'token' => 'required',
+            'password' => 'required|min:8|max:32',
+            'password_confirmation' => 'required|same:password',
+        ]);
+
+        // Get user
+        $user = User::where('id', $request->token)->first();
+
+        // Update password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        // Create session
+        Session::flash('alert', ['type' => 'success', 'message' => 'Password anda berhasil diperbarui! Silahkan login untuk melanjutkan.']);
+
+        // Redirect to login page
+        return redirect()->route('client.login.form');
+    }
+
     public function updateProfile(Request $request) {
         // Check phone number
         $phone = str_replace(" ","",$request->input('phone'));

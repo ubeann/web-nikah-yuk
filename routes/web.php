@@ -44,6 +44,19 @@ Route::group(['as' => 'client.'], function () {
         Route::post('/', [ClientAuthController::class, 'register'])->name('submit');
     });
 
+    // Forgot Password
+    Route::group(['prefix' => 'forgot-password', 'as' => 'forgot-password.'], function () {
+        Route::get('/', [ClientPagesController::class, 'forgotPasswordForm'])->name('form');
+        Route::post('/', [ClientAuthController::class, 'forgotPassword'])->name('submit');
+        Route::get('/sent', [ClientPagesController::class, 'forgotPasswordSent'])->name('sent');
+    });
+
+    // Reset Password
+    Route::group(['prefix' => 'reset-password', 'as' => 'reset-password.'], function () {
+        Route::get('/', [ClientPagesController::class, 'resetPasswordForm'])->name('form');
+        Route::post('/', [ClientAuthController::class, 'resetPassword'])->name('submit');
+    });
+
     // Authenticated routes
     Route::group(['middleware' => 'client'], function () {
         // Profile

@@ -70,6 +70,39 @@ class PagesController extends Controller {
         return view('client.register');
     }
 
+    public function forgotPasswordForm() {
+        // Check Auth
+        if (auth()->guard('user')->check()) {
+            return redirect()->route('client.landing');
+        }
+
+        // Return view
+        return view('client.password.forgot');
+    }
+
+    public function forgotPasswordSent() {
+        // Check Auth
+        if (auth()->guard('user')->check()) {
+            return redirect()->route('client.landing');
+        }
+
+        // Return view
+        return view('client.password.forgot-greet');
+    }
+
+    public function resetPasswordForm(Request $request) {
+        // Check Auth
+        if (auth()->guard('user')->check()) {
+            return redirect()->route('client.landing');
+        }
+
+        // Get token
+        $token = $request->query('token');
+
+        // Return view
+        return view('client.password.reset', compact('token'));
+    }
+
     public function profile() {
         // Get user
         $user = auth()->guard('user')->user();
