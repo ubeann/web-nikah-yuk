@@ -52,8 +52,7 @@ class PagesController extends Controller {
 
     public function loginForm() {
         // Check Auth
-        // if (auth()->guard('user')->check()) {
-        if (auth()->guard('user')->check() || auth()->guard('admin')->check()) {
+        if (auth()->guard('user')->check()) {
             return redirect()->route('client.landing');
         }
 
@@ -63,8 +62,7 @@ class PagesController extends Controller {
 
     public function registerForm() {
         // Check Auth
-        // if (auth()->guard('user')->check()) {
-        if (auth()->guard('user')->check() || auth()->guard('admin')->check()) {
+        if (auth()->guard('user')->check()) {
             return redirect()->route('client.landing');
         }
 
