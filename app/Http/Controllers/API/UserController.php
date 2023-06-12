@@ -229,4 +229,41 @@ class UserController extends Controller {
             'timestamp' => date('Y-m-d H:i:s'),
         ], 200);
     }
+
+    public function destroy($id) {
+        // Get user
+        $user = User::find($id);
+
+        // Check user
+        if (!$user) {
+            // Get stack trace
+            $stackTrace = debug_backtrace();
+
+            // Return response
+            return response()->json([
+                'status' => 'error',
+                'code' => 404,
+                'message' => 'User not found',
+                'errors' => [
+                    'user' => [
+                        'User not found',
+                    ],
+                ],
+                'stacktrace' => $stackTrace,
+                'timestamp' => date('Y-m-d H:i:s'),
+            ], 404);
+        }
+
+        // Delete user
+        $user->delete();
+
+        // Return response
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'User deleted successfully',
+            'data' => $user,
+            'timestamp' => date('Y-m-d H:i:s'),
+        ], 200);
+    }
 }
