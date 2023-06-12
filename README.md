@@ -74,105 +74,16 @@ Command is a way to interact with the Laravel application through the command-li
     php artisan import:users <path-to-csv-file>
     ```
 
-    ```php
-    <?php
-
-    namespace App\Console\Commands;
-
-    use Illuminate\Console\Command;
-    use App\User;
-    use Illuminate\Support\Facades\Hash;
-
-    class ImportUsers extends Command
-    {
-        protected $signature = 'import:users {file}';
-
-        protected $description = 'Import users from CSV file';
-
-        public function handle()
-        {
-            $file = $this->argument('file');
-            
-            $csv = \League\Csv\Reader::createFromPath($file);
-            $csv->setHeaderOffset(0);
-            
-            foreach ($csv as $row) {
-                $user = new User();
-                $user->name = $row['name'];
-                $user->email = $row['email'];
-                $user->password = Hash::make($row['password']);
-                $user->save();
-            }
-            
-            $this->info('Users imported successfully.');
-        }
-    }
-    ```
-
 2. Remove `cancelled` events from the database:
 
     ```bash
-    php artisan event:remove-cancelled
-    ```
-
-    ```php
-    <?php
-
-    namespace App\Console\Commands;
-
-    use Illuminate\Console\Command;
-    use App\Models\Event;
-
-    class RemoveCancelledEvents extends Command
-    {
-        protected $signature = 'event:remove-cancelled';
-
-        protected $description = 'Remove cancelled events';
-
-        public function handle()
-        {
-            $cancelledEvents = Event::where('status', 'cancelled')->get();
-            
-            foreach ($cancelledEvents as $event) {
-                $event->delete();
-            }
-            
-            $this->info('Cancelled events removed successfully.');
-        }
-    }
+    php artisan event:clear
     ```
 
 3. Remove `inactive` users from the database:
 
     ```bash
-    php artisan user:remove-inactive
-    ```
-
-    ```php
-    <?php
-
-    namespace App\Console\Commands;
-
-    use Illuminate\Console\Command;
-    use App\Models\User;
-
-    class RemoveInactiveUsers extends Command
-    {
-        protected $signature = 'user:remove-inactive';
-
-        protected $description = 'Remove inactive users';
-
-        public function handle()
-        {
-            $inactiveUsers = User::where('active', false)->get();
-            
-            foreach ($inactiveUsers as $user) {
-                $user->delete();
-            }
-            
-            $this->info('Inactive users removed successfully.');
-        }
-    }
+    php artisan user:clear
     ```
 
 Other commands are available in the `app/Console/Commands` folder.
@@ -181,81 +92,9 @@ Other commands are available in the `app/Console/Commands` folder.
 
 Job is a unit of work that is executed in the background. The following are some of the jobs that you can use to perform background tasks:
 
-1. Send an email to a user:
-
-    ```bash
-    php artisan email:send <user-id>
-    ```
-
-    ```php
-    <?php
-
-    namespace App\Jobs;
-
-    use App\Models\User;
-    use App\Mail\SendEmail;
-    use Illuminate\Bus\Queueable;
-    use Illuminate\Queue\SerializesModels;
-    use Illuminate\Queue\InteractsWithQueue;
-    use Illuminate\Contracts\Queue\ShouldQueue;
-    use Illuminate\Foundation\Bus\Dispatchable;
-    use Illuminate\Support\Facades\Mail;
-
-    class SendEmailJob implements ShouldQueue
-    {
-        use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-        protected $user;
-
-        public function __construct(User $user)
-        {
-            $this->user = $user;
-        }
-
-        public function handle()
-        {
-            Mail::to($this->user->email)->send(new SendEmail($this->user));
-        }
-    }
-    ```
-
-2. Send booking information to a user:
-
-    ```bash
-    php artisan booking:send <user-id>
-    ```
-
-    ```php
-    <?php
-
-    namespace App\Jobs;
-
-    use App\Models\User;
-    use App\Mail\BookingConfirmationMail;
-    use Illuminate\Bus\Queueable;
-    use Illuminate\Queue\SerializesModels;
-    use Illuminate\Queue\InteractsWithQueue;
-    use Illuminate\Contracts\Queue\ShouldQueue;
-    use Illuminate\Foundation\Bus\Dispatchable;
-    use Illuminate\Support\Facades\Mail;
-
-    class BookingConfirmationJob implements ShouldQueue
-    {
-        use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-        protected $user;
-
-        public function __construct(User $user)
-        {
-            $this->user = $user;
-        }
-
-        public function handle()
-        {
-            Mail::to($this->user->email)->send(new BookingConfirmationMail($this->user));
-        }
-    }
-    ```
+1. Add media to Spatie Media Library
+2. Send an email to a user
+3. Send booking information to a user
 
 Other jobs are available in the `app/Jobs` folder.
 
@@ -269,52 +108,10 @@ Queue is a mechanism for deferring the execution of a time-consuming task, such 
     php artisan queue:send-email <user-id>
     ```
 
-    ```php
-    <?php
-
-    namespace App\Http\Controllers;
-
-    use App\Models\User;
-    use App\Jobs\SendEmailJob;
-
-    class UserController extends Controller
-    {
-        public function sendEmail($id)
-        {
-            $user = User::findOrFail($id);
-            
-            SendEmailJob::dispatch($user);
-            
-            return redirect()->back()->with('success', 'Email sent successfully.');
-        }
-    }
-    ```
-
 2. Send booking information to a user:
 
     ```bash
     php artisan queue:booking-confirmation <user-id>
-    ```
-
-    ```php
-    <?php
-
-    namespace App\Http\Controllers;
-
-    use App\Models\User;
-    use App\Jobs\BookingConfirmationJob;
-
-    class UserController extends Controller
-    {
-        public function bookingConfirmation($id)
-        {
-            $user = User::findOrFail($id);
-            
-            BookingConfirmationJob::dispatch($user);
-            
-            return redirect()->back()->with('success', 'Booking confirmation sent successfully.');
-        }
-    }
     ```
 
 Other queues are available in the `app/Http/Controllers` folder.
