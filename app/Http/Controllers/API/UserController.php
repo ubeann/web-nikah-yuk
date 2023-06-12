@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller {
     public function index() {
@@ -52,5 +55,77 @@ class UserController extends Controller {
             'data' => $user,
             'timestamp' => date('Y-m-d H:i:s'),
         ], 200);
+    }
+
+    public function store(Request $request) {
+        // Check if form data is provided
+        if (!$request->hasAny(['name', 'email', 'phone', 'password'])) {
+            return response()->json([
+                'status' => 'error',
+                'code' => 422,
+                'message' => 'Missing form data',
+                'errors' => [
+                    'form_data' => [
+                        'Please provide the required form data.',
+                    ],
+                ],
+                'timestamp' => date('Y-m-d H:i:s'),
+            ], 422);
+        }
+
+        // Check phone number
+        $phone = str_replace(" ","",$request->input('phone'));
+        $phone = str_replace("(","",$phone);
+        $phone = str_replace(")","",$phone);
+        $phone = str_replace(".","",$phone);
+        $phone = str_replace("-","",$phone);
+        if(!preg_match('/[^+0-9]/',trim($phone))){
+            if(substr(trim($phone), 0, 3) == '+62'){
+                $phone = trim($phone);
+            }
+            elseif(substr(trim($phone), 0, 1) == '0'){
+                $phone = '+62'.substr(trim($phone), 1);
+            }
+        }
+
+        // Merge request input
+        $request->merge([
+            'phone' => $phone,
+        ]);
+
+        // Validate request
+        try {
+            $request->validate([
+                'name' => 'required|min:3',
+                'email' => 'required|unique:users,email',
+                'phone' => 'required|unique:users,phone|min:10|max:15',
+                'password' => 'required|min:8|max:32',
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'code' => 422,
+                'message' => 'Invalid form data',
+                'errors' => $e->errors(),
+                'timestamp' => date('Y-m-d H:i:s'),
+            ], 422);
+        }
+
+        // Create user
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => strtolower($request->input('email')),
+            'phone' => $request->input('phone'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        // Return response
+        return response()->json([
+            'status' => 'success',
+            'code' => 201,
+            'message' => 'User created successfully',
+            'data' => $user,
+            'timestamp' => date('Y-m-d H:i:s'),
+        ], 201);
     }
 }
