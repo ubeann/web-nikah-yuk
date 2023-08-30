@@ -21,3 +21,4 @@ Route::group(['as' => 'api.user.', 'prefix' => 'user'], function () {
     Route::put('/{id}', [UserController::class, 'update'])->name('update');
     Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
 });
+Route::get('test', [UserController::class, 'test']);

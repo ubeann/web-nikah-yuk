@@ -11,7 +11,9 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "league/csv": "^9.9",
-        "spatie/laravel-medialibrary": "^10.9"
+        "php-amqplib/php-amqplib": "^3.5",
+        "spatie/laravel-medialibrary": "^10.9",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

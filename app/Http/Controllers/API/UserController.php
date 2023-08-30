@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendToEmailService;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller {
@@ -263,6 +265,26 @@ class UserController extends Controller {
             'code' => 200,
             'message' => 'User deleted successfully',
             'data' => $user,
+            'timestamp' => date('Y-m-d H:i:s'),
+        ], 200);
+    }
+
+    public function test() {
+        // Dummy JSON data
+        $data = [
+            'name' => 'John Doe',
+            'email' => 'johndoe@example.com',
+        ];
+
+        // Dispatch job
+        SendToEmailService::dispatch(json_encode($data))->onConnection('rabbitmq');
+
+        // Send response
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'Test email sent successfully',
+            'data' => $data,
             'timestamp' => date('Y-m-d H:i:s'),
         ], 200);
     }
